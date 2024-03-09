@@ -42,6 +42,12 @@
     <Filter Include="03Game\Scenes\TestScene">
       <UniqueIdentifier>{a1006bea-ac8d-4a4b-bb8e-58ae434ddf6c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03Game\Objects">
+      <UniqueIdentifier>{82f82f48-0e37-4f93-8904-6ba7a21778e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03Game\Objects\Player">
+      <UniqueIdentifier>{a083c9f6-5a3a-4ba8-9270-a2551c27fe5e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Main.cpp">
@@ -142,6 +148,12 @@
     </ClCompile>
     <ClCompile Include="Game\Scenes\TestScene.cpp">
       <Filter>03Game\Scenes\TestScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Objects\Player.cpp">
+      <Filter>03Game\Objects\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Objects\TPSCamera.cpp">
+      <Filter>03Game\Objects\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -252,6 +264,12 @@
     </ClInclude>
     <ClInclude Include="Game\Scenes\TestScene.h">
       <Filter>03Game\Scenes\TestScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objects\Player.h">
+      <Filter>03Game\Objects\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objects\TPSCamera.h">
+      <Filter>03Game\Objects\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

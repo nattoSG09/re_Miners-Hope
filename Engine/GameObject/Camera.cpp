@@ -41,6 +41,11 @@ void Camera::SetPosition(XMFLOAT3 position) { _position = position; }
 //Å“_‚ğæ“¾
 XMFLOAT3 Camera::GetTarget() { return _target; }
 
+XMVECTOR Camera::GetSightline()
+{
+	return XMLoadFloat3(&_target) - XMLoadFloat3(&_position);
+}
+
 //ˆÊ’u‚ğæ“¾
 XMFLOAT3 Camera::GetPosition() { return _position; }
 
