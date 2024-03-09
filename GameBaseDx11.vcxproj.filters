@@ -30,6 +30,18 @@
     <Filter Include="01Engine\Json">
       <UniqueIdentifier>{fcc430ef-4ba4-44a7-a034-c16a6b0376a7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03Game">
+      <UniqueIdentifier>{fc36f113-d355-4f42-adca-9e1f3fbd2f61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03Game\Scenes">
+      <UniqueIdentifier>{fd78e0a3-3bb5-47e0-beb2-a9b874f3016b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03Game\Scenes\TitleScene">
+      <UniqueIdentifier>{12422b82-424e-4267-87fd-7df5b21c6905}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03Game\Scenes\TestScene">
+      <UniqueIdentifier>{a1006bea-ac8d-4a4b-bb8e-58ae434ddf6c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Main.cpp">
@@ -38,7 +50,6 @@
     <ClCompile Include="Engine\SceneManager.cpp">
       <Filter>01Engine</Filter>
     </ClCompile>
-    <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="Engine\Collider\BoxCollider.cpp">
       <Filter>01Engine\Collider</Filter>
     </ClCompile>
@@ -120,7 +131,18 @@
     <ClCompile Include="Engine\ImGui\imgui_widgets.cpp">
       <Filter>01Engine\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Json\JsonReader.cpp" />
+    <ClCompile Include="Engine\Transition.cpp">
+      <Filter>01Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Json\JsonReader.cpp">
+      <Filter>01Engine\Json</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scenes\TitleScene.cpp">
+      <Filter>03Game\Scenes\TitleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scenes\TestScene.cpp">
+      <Filter>03Game\Scenes\TestScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Global.h">
@@ -129,7 +151,6 @@
     <ClInclude Include="Engine\SceneManager.h">
       <Filter>01Engine</Filter>
     </ClInclude>
-    <ClInclude Include="TestScene.h" />
     <ClInclude Include="Engine\Collider\BoxCollider.h">
       <Filter>01Engine\Collider</Filter>
     </ClInclude>
@@ -220,7 +241,18 @@
     <ClInclude Include="Engine\Json\json.hpp">
       <Filter>01Engine\Json</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Json\JsonReader.h" />
+    <ClInclude Include="Engine\Transition.h">
+      <Filter>01Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Json\JsonReader.h">
+      <Filter>01Engine\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scenes\TitleScene.h">
+      <Filter>03Game\Scenes\TitleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scenes\TestScene.h">
+      <Filter>03Game\Scenes\TestScene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shader\Simple2D.hlsl">

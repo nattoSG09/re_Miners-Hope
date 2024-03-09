@@ -11,6 +11,7 @@
 #include <time.h>
 
 #include "global.h"
+#include "Transition.h"
 #include "DirectX/Input.h"
 #include "DirectX/Direct3D.h"
 #include "GameObject/RootObject.h"
@@ -71,8 +72,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	//オーディオ（効果音）の準備
 	Audio::Initialize();
-
 	
+	// 遷移の準備
+	Transition::Initialize();
+
 	//ルートオブジェクト準備
 	//すべてのゲームオブジェクトの親となるオブジェクト
 	RootObject* pRootObject = new RootObject;
@@ -130,6 +133,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 				//入力（キーボード、マウス、コントローラー）情報を更新
 				Input::Update();
 
+				Transition::Update();
+
 				//ImGuiの更新
 				ImGui_ImplDX11_NewFrame();
 				ImGui_ImplWin32_NewFrame();
@@ -156,9 +161,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 				//エフェクトの描画
 				VFX::Draw();
 
+				Transition::Draw();
+
 				//ImGuiの描画
 				ImGui::Render();
 				ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+
 
 				//描画終了
 				Direct3D::EndDraw();
@@ -179,6 +187,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	//いろいろ解放
 	VFX::Release();
+	Transition::Release();
 	Audio::AllRelease();
 	Model::AllRelease();
 	Image::AllRelease();

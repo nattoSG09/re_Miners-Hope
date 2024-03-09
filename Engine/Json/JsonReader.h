@@ -9,6 +9,5 @@ namespace JsonReader
 	bool Load(string fileName, json& _data);
 
 	bool Save(string fileName, json& _data);
-
 };
 
