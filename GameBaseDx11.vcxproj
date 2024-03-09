@@ -154,6 +154,7 @@
     <ClCompile Include="Engine\ResourceManager\Text.cpp" />
     <ClCompile Include="Engine\ResourceManager\VFX.cpp" />
     <ClCompile Include="Engine\SceneManager.cpp" />
+    <ClCompile Include="Engine\Json\JsonManager.cpp" />
     <ClCompile Include="TestScene.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -180,7 +181,7 @@
     <ClInclude Include="Engine\ImGui\imstb_rectpack.h" />
     <ClInclude Include="Engine\ImGui\imstb_textedit.h" />
     <ClInclude Include="Engine\ImGui\imstb_truetype.h" />
-    <ClInclude Include="Engine\json.hpp" />
+    <ClInclude Include="Engine\Json\json.hpp" />
     <ClInclude Include="Engine\ResourceManager\Audio.h" />
     <ClInclude Include="Engine\ResourceManager\CsvReader.h" />
     <ClInclude Include="Engine\ResourceManager\Debug.h" />
@@ -189,6 +190,7 @@
     <ClInclude Include="Engine\ResourceManager\Text.h" />
     <ClInclude Include="Engine\ResourceManager\VFX.h" />
     <ClInclude Include="Engine\SceneManager.h" />
+    <ClInclude Include="Engine\Json\JsonManager.h" />
     <ClInclude Include="TestScene.h" />
   </ItemGroup>
   <ItemGroup>

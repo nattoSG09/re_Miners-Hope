@@ -27,6 +27,9 @@
     <Filter Include="01Engine\ImGui">
       <UniqueIdentifier>{b9a7b375-8c63-4ea3-9171-cc52601655d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01Engine\Json">
+      <UniqueIdentifier>{fcc430ef-4ba4-44a7-a034-c16a6b0376a7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Main.cpp">
@@ -117,6 +120,7 @@
     <ClCompile Include="Engine\ImGui\imgui_widgets.cpp">
       <Filter>01Engine\ImGui</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Json\JsonManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Global.h">
@@ -213,9 +217,10 @@
     <ClInclude Include="Engine\ImGui\imstb_truetype.h">
       <Filter>01Engine\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\json.hpp">
-      <Filter>01Engine</Filter>
+    <ClInclude Include="Engine\Json\json.hpp">
+      <Filter>01Engine\Json</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Json\JsonManager.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shader\Simple2D.hlsl">
