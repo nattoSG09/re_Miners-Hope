@@ -1,5 +1,5 @@
 #include "Input.h"
-#include "Global.h"
+#include "../Global.h"
 
 namespace Input
 {

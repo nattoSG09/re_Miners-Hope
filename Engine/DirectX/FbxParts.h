@@ -3,7 +3,7 @@
 #include <d3d11.h>
 #include <DirectXMath.h>
 #include "Texture.h"
-#include "Transform.h"
+#include "../GameObject/Transform.h"
 
 using namespace DirectX;
 

@@ -1,8 +1,8 @@
 #include "FbxParts.h"
 #include "Fbx.h"
-#include "Global.h"
-#include "Direct3D.h"
-#include "Camera.h"
+#include "../Global.h"
+#include "../DirectX/Direct3D.h"
+#include "../GameObject/Camera.h"
 
 //コンストラクタ
 FbxParts::FbxParts():

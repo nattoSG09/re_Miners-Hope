@@ -1,5 +1,6 @@
 #pragma once
 #include "global.h"
+#include "GameObject/GameObject.h"
 
 //ƒQ[ƒ€‚É“oê‚·‚éƒV[ƒ“
 enum SCENE_ID

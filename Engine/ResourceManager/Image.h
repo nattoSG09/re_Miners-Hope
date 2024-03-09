@@ -4,8 +4,8 @@
 
 #include <vector>
 #include <string>
-#include "Sprite.h"
-#include "Transform.h"
+#include "../DirectX/Sprite.h"
+#include "../GameObject/Transform.h"
 
 //-----------------------------------------------------------
 //2D‰æ‘œ‚ğŠÇ—‚·‚é

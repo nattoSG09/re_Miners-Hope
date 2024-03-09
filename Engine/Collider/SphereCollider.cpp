@@ -1,6 +1,6 @@
 #include "SphereCollider.h"
 #include "BoxCollider.h"
-#include "Model.h"
+#include "../ResourceManager/Model.h"
 
 //コンストラクタ（当たり判定の作成）
 //引数：basePos	当たり判定の中心位置（ゲームオブジェクトの原点から見た位置）

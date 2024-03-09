@@ -1,5 +1,5 @@
 #pragma once
-#include "Image.h"
+#include "../DirectX/Input.h"
 
 class Text
 {

@@ -1,6 +1,6 @@
 #include "BillBoard.h"
-#include "Camera.h"
-#include "Global.h"
+#include "../GameObject/Camera.h"
+#include "../Global.h"
 
 BillBoard::BillBoard():
 	pVertexBuffer_(nullptr), pIndexBuffer_(nullptr), pConstantBuffer_(nullptr), pTexture_(nullptr)

@@ -1,5 +1,5 @@
 #include "RootObject.h"
-#include "SceneManager.h"
+#include "../SceneManager.h"
 
 
 RootObject::RootObject():

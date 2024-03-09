@@ -1,4 +1,4 @@
-#include "Global.h"
+#include "../Global.h"
 #include "Image.h"
 
 //3D‰æ‘œ‚ğŠÇ—‚·‚é

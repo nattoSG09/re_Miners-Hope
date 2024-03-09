@@ -1,6 +1,6 @@
 #pragma once
-#include "GameObject.h"
-#include "BillBoard.h"
+#include "../GameObject/GameObject.h"
+#include "../DirectX/BillBoard.h"
 #include <list>
 
 

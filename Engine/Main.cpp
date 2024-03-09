@@ -11,13 +11,14 @@
 #include <time.h>
 
 #include "global.h"
-#include "RootObject.h"
-#include "Model.h"
-#include "Image.h"
-#include "Camera.h"
-#include "Input.h"
-#include "Audio.h"
-#include "VFX.h"
+#include "DirectX/Input.h"
+#include "DirectX/Direct3D.h"
+#include "GameObject/RootObject.h"
+#include "GameObject/Camera.h"
+#include "ResourceManager/Image.h"
+#include "ResourceManager/Model.h"
+#include "ResourceManager/Audio.h"
+#include "ResourceManager/VFX.h"
 
 #pragma comment(lib,"Winmm.lib")
 

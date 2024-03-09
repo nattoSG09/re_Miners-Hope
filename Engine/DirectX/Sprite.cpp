@@ -1,6 +1,6 @@
 #include "Sprite.h"
 #include "Direct3D.h"
-#include "Global.h"
+#include "../Global.h"
 
 //コンストラクタ
 Sprite::Sprite():

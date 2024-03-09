@@ -1,7 +1,7 @@
 #include <d3dcompiler.h>
 #include "Direct3D.h"
-#include "Global.h"
-#include "Transform.h"
+#include "../Global.h"
+#include "../GameObject/Transform.h"
 
 //‰æ–Ê‚Ì•`‰æ‚ÉŠÖ‚·‚éˆ—
 namespace Direct3D

@@ -1,5 +1,6 @@
 #include "VFX.h"
-#include "Camera.h"
+#include "../GameObject/Camera.h"
+
 
 namespace VFX
 {

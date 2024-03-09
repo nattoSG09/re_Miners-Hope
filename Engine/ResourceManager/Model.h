@@ -3,8 +3,8 @@
 #include <assert.h>
 #include <vector>
 #include <string>
-#include "Fbx.h"
-#include "Transform.h"
+#include "../DirectX/Fbx.h"
+#include "../GameObject/Transform.h"
 
 //-----------------------------------------------------------
 //3Dモデル（FBXファイル）を管理する

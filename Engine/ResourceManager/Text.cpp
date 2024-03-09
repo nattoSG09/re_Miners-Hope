@@ -1,6 +1,8 @@
-#include <stdlib.h>
-#include "Direct3D.h"
 #include "Text.h"
+
+#include <stdlib.h>
+#include "../DirectX/Direct3D.h"
+#include "Image.h"
 
 Text::Text() : hPict_(-1), width_(16), height_(32), fileName_("char.png"), rowLength_(16)
 {
