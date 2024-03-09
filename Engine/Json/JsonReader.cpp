@@ -1,8 +1,8 @@
-#include "JsonManager.h"
+#include "JsonReader.h"
 #include <fstream>
 using namespace std;
 
-bool JsonManager::Load(string fileName,json& _data)
+bool JsonReader::Load(string fileName,json& _data)
 {
     // ファイルを開く
     ifstream readingFile;
@@ -20,7 +20,7 @@ bool JsonManager::Load(string fileName,json& _data)
     return true;
 }
 
-bool JsonManager::Save(string fileName, json& _data)
+bool JsonReader::Save(string fileName, json& _data)
 {
     // ファイルを開く
     ofstream writingFile;

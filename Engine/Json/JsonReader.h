@@ -4,7 +4,7 @@
 using std::string;
 using json = nlohmann::json;
 
-namespace JsonManager
+namespace JsonReader
 {
 	bool Load(string fileName, json& _data);
 

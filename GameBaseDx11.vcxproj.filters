@@ -120,7 +120,7 @@
     <ClCompile Include="Engine\ImGui\imgui_widgets.cpp">
       <Filter>01Engine\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Json\JsonManager.cpp" />
+    <ClCompile Include="Engine\Json\JsonReader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Global.h">
@@ -220,7 +220,7 @@
     <ClInclude Include="Engine\Json\json.hpp">
       <Filter>01Engine\Json</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Json\JsonManager.h" />
+    <ClInclude Include="Engine\Json\JsonReader.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shader\Simple2D.hlsl">
