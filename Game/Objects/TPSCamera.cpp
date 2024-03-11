@@ -10,7 +10,7 @@ namespace {
 }
 
 TPSCamera::TPSCamera(GameObject* parent)
-	:GameObject(parent,"TPSCamera"),sensitivity_(DEF_SENSITIVITY)
+	:GameObject(parent,"TPSCamera"),sensitivity_(DEF_SENSITIVITY),angle_(0,0),pTarget_(nullptr)
 {
 }
 

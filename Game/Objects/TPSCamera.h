@@ -15,5 +15,6 @@ public:
 	void Release() override;
 	
 	void SetTarget(GameObject* target) { pTarget_ = target; }
+	XMFLOAT2 GetAngle() { return angle_; }
 };
 

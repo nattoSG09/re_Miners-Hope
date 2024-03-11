@@ -13,5 +13,6 @@ public:
 
 private:
 	void Move(XMVECTOR dir,float speed);
+	void Walking();
 };
 
