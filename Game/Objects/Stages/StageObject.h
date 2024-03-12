@@ -20,4 +20,4 @@ public:
 	void Save();
 };
 
-StageObject* CreateObject(GameObject* parent, std::string modelFilePath);
+StageObject* CreateObject(GameObject* parent,std::string name, std::string modelFilePath);

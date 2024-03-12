@@ -14,8 +14,9 @@ void Stage::Update()
 {
 #ifdef _DEBUG
 	ImGui::Begin("CreateObject"); {
+		static int number = 0;
 		if (ImGui::Button("Floor")) {
-			objects_.push_back(CreateObject(this, "Models/Stage/stageFloor.fbx"));
+			objects_.push_back(CreateObject(this, "Object" + std::to_string(number), "Models/Stage/stageFloor.fbx"));
 		}
 	}
 	ImGui::End();
