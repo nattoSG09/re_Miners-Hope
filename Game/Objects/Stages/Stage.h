@@ -14,5 +14,5 @@ public:
 	void Update() override;
 	void Draw() override;
 	void Release() override;
-	StageObject* SetingStageObject(std::string objName);
+
 };

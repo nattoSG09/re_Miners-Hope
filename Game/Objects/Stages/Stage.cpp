@@ -1,7 +1,6 @@
 #include "Stage.h"
 #include "StageObject.h"
-#include "../../../Engine/ResourceManager/Model.h"
-
+#include "../../../Engine/ImGui/imgui.h"
 Stage::Stage(GameObject* parent)
 	:GameObject(parent)
 {
@@ -13,6 +12,15 @@ void Stage::Initialize()
 
 void Stage::Update()
 {
+#ifdef _DEBUG
+	ImGui::Begin("CreateObject"); {
+		if (ImGui::Button("Floor")) {
+			objects_.push_back(CreateObject(this, "Models/Stage/stageFloor.fbx"));
+		}
+	}
+	ImGui::End();
+#endif // _DEBUG
+
 }
 
 void Stage::Draw()
@@ -21,12 +29,7 @@ void Stage::Draw()
 
 void Stage::Release()
 {
-}
-
-StageObject* Stage::SetingStageObject(std::string objName)
-{
-	StageObject* obj = Instantiate<StageObject>(this);
-	obj->Load(objName);
-	objects_.push_back(obj);
-	return obj;
+	for (auto obj : objects_) {
+		obj->Save();
+	}
 }

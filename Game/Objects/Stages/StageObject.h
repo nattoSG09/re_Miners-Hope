@@ -5,9 +5,10 @@ class StageObject : public GameObject
 {
 protected:
 	int hModel_;
-
+	std::string filePath_;
+	std::string name_;
 public:
-	StageObject(GameObject* parent);
+	StageObject(GameObject* parent,std::string name,std::string filePath);
 	virtual void Initialize() override;
 	virtual void Update() override;
 	virtual void Draw() override;
@@ -15,6 +16,8 @@ public:
 
 	int GetModelHandle() { return hModel_; }
 	void SetModelHandle(int _hModel) { hModel_ = hModel_; }
-
-	void Load(std::string _objName);
+	void Load();
+	void Save();
 };
+
+StageObject* CreateObject(GameObject* parent, std::string modelFilePath);

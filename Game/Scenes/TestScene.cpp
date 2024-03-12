@@ -19,7 +19,7 @@ void TestScene::Initialize()
 	// カメラを配置
 	pCamera_ = Instantiate<TPSCamera>(this); {
 		// プレイヤーに焦点を合わせる
-		pCamera_->SetTarget(pPlayer_);
+		pCamera_->SetTarget(nullptr);
 	}
 }
 
