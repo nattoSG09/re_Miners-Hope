@@ -18,7 +18,6 @@ void Player::Initialize()
 
 void Player::Update()
 {
-	ImGui::Text("position = %f,%f,%f",transform_.position_.x,transform_.position_.y,transform_.position_.z);
 
 	Walking();
 }

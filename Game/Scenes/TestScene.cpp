@@ -3,6 +3,9 @@
 #include "../Objects/TPSCamera.h"
 #include "../Objects/Stages/Stage.h"
 
+#include "../../Engine/ImGui/imgui.h"
+
+
 TestScene::TestScene(GameObject * parent)
 	: GameObject(parent, "TestScene"),pPlayer_(nullptr),pCamera_(nullptr)
 {
@@ -25,6 +28,15 @@ void TestScene::Initialize()
 
 void TestScene::Update()
 {
+	ImGui::Begin("Editor", nullptr, ImGuiWindowFlags_MenuBar); {
+		static bool camMode = false;
+		ImGui::Checkbox("TPS ON", &camMode);
+		if (camMode)pCamera_->SetTarget(pPlayer_);
+		else pCamera_->SetTarget(nullptr);
+
+	}ImGui::End();
+	
+	ImGui::Text("debug texts...");
 }
 
 void TestScene::Draw()

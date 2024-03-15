@@ -1,23 +1,19 @@
 #pragma once
 #include "../../../Engine/GameObject/GameObject.h"
+#include <string>
+using std::string;
 
 class StageObject : public GameObject
 {
-protected:
+	string modelFilePath_;
 	int hModel_;
-	std::string filePath_;
-	std::string name_;
-public:
-	StageObject(GameObject* parent,std::string name,std::string filePath);
-	virtual void Initialize() override;
-	virtual void Update() override;
-	virtual void Draw() override;
-	virtual void Release() override;
+	friend class Stage;
 
-	int GetModelHandle() { return hModel_; }
-	void SetModelHandle(int _hModel) { hModel_ = hModel_; }
-	void Load();
-	void Save();
+public:
+	StageObject(string _name, string _modelFilePath, GameObject* _parent);
+	void Initialize() override;
+	void Update() override;
+	void Draw() override;
+	void Release() override;
 };
 
-StageObject* CreateObject(GameObject* parent,std::string name, std::string modelFilePath);

@@ -1,6 +1,8 @@
 #pragma once
 #include "../../../Engine/GameObject/GameObject.h"
+#include <string>
 #include <vector>
+using std::string;
 using std::vector;
 
 class StageObject;
@@ -15,4 +17,10 @@ public:
 	void Draw() override;
 	void Release() override;
 
+private:
+	void Edit();
+	bool Save();
+	bool Load();
+	StageObject* CreateStageObject(string _name, string _modelFilePath, GameObject* _parent);
 };
+

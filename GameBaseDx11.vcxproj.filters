@@ -155,8 +155,8 @@
     <ClCompile Include="Game\Objects\TPSCamera.cpp">
       <Filter>03Game\Objects\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Objects\Stages\StageObject.cpp" />
     <ClCompile Include="Game\Objects\Stages\Stage.cpp" />
+    <ClCompile Include="Game\Objects\Stages\StageObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Global.h">
@@ -273,8 +273,8 @@
     <ClInclude Include="Game\Objects\TPSCamera.h">
       <Filter>03Game\Objects\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Objects\Stages\StageObject.h" />
     <ClInclude Include="Game\Objects\Stages\Stage.h" />
+    <ClInclude Include="Game\Objects\Stages\StageObject.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shader\Simple2D.hlsl">

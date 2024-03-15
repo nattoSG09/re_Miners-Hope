@@ -160,8 +160,8 @@
     <ClCompile Include="Game\Scenes\TitleScene.cpp" />
     <ClCompile Include="Game\Objects\Player.cpp" />
     <ClCompile Include="Game\Objects\TPSCamera.cpp" />
-    <ClCompile Include="Game\Objects\Stages\StageObject.cpp" />
     <ClCompile Include="Game\Objects\Stages\Stage.cpp" />
+    <ClCompile Include="Game\Objects\Stages\StageObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Collider\BoxCollider.h" />
@@ -202,8 +202,8 @@
     <ClInclude Include="Game\Scenes\TitleScene.h" />
     <ClInclude Include="Game\Objects\Player.h" />
     <ClInclude Include="Game\Objects\TPSCamera.h" />
-    <ClInclude Include="Game\Objects\Stages\StageObject.h" />
     <ClInclude Include="Game\Objects\Stages\Stage.h" />
+    <ClInclude Include="Game\Objects\Stages\StageObject.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shader\BillBoard.hlsl">

@@ -1,25 +1,22 @@
 #include "Stage.h"
-#include "StageObject.h"
 #include "../../../Engine/ImGui/imgui.h"
+#include "../../../Engine/Json/JsonReader.h"
+#include "StageObject.h"
+
 Stage::Stage(GameObject* parent)
-	:GameObject(parent)
+	:GameObject(parent,"Stage")
 {
 }
 
 void Stage::Initialize()
 {
+	Load();
 }
 
 void Stage::Update()
 {
 #ifdef _DEBUG
-	ImGui::Begin("CreateObject"); {
-		static int number = 0;
-		if (ImGui::Button("Floor")) {
-			objects_.push_back(CreateObject(this, "Object" + std::to_string(number), "Models/Stage/stageFloor.fbx"));
-		}
-	}
-	ImGui::End();
+	Edit();
 #endif // _DEBUG
 
 }
@@ -30,7 +27,139 @@ void Stage::Draw()
 
 void Stage::Release()
 {
-	for (auto obj : objects_) {
-		obj->Save();
+}
+
+void Stage::Edit()
+{
+	ImGui::Begin("Editor", nullptr, ImGuiWindowFlags_MenuBar); {
+		if (ImGui::BeginMenuBar()) {
+			if (ImGui::BeginMenu("File"))
+			{
+				// セーブする
+				if (ImGui::MenuItem("Save")) {
+					Save();
+				}
+
+				// ロードする
+				if (ImGui::MenuItem("Load")) {
+					Load();
+				}
+
+				// 削除を行う
+				if (ImGui::MenuItem("delete")) {
+					for (auto obj : objects_) {
+						obj->KillMe();
+					}
+					objects_.clear();
+				}
+				ImGui::EndMenu();
+			}
+			ImGui::EndMenuBar();
+		}
+
+		// 新しいオブジェクトを生成する
+		if (ImGui::TreeNode("CreateButtons")) {
+			if (ImGui::Button("Floor")) {
+				CreateStageObject("Floor" + std::to_string(objects_.size() + 1), "Models/Stage/Floor.fbx", this);
+			}
+			ImGui::TreePop();
+		}
+
+		// 作成されたオブジェクトの位置等を編集する
+		if (ImGui::TreeNode("ObjectList")) {
+			for (auto obj : objects_) {
+				if (ImGui::TreeNode(obj->objectName_.c_str())) {
+					if (ImGui::TreeNode("position_")) {
+						ImGui::InputFloat("x", &obj->transform_.position_.x);
+						ImGui::InputFloat("y", &obj->transform_.position_.y);
+						ImGui::InputFloat("z", &obj->transform_.position_.z);
+						ImGui::TreePop();
+					}
+
+					if (ImGui::TreeNode("rotate_")) {
+						ImGui::InputFloat("x", &obj->transform_.rotate_.x);
+						ImGui::InputFloat("y", &obj->transform_.rotate_.y);
+						ImGui::InputFloat("z", &obj->transform_.rotate_.z);
+						ImGui::TreePop();
+					}
+
+					if (ImGui::TreeNode("scale_")) {
+						ImGui::InputFloat("x", &obj->transform_.scale_.x);
+						ImGui::InputFloat("y", &obj->transform_.scale_.y);
+						ImGui::InputFloat("z", &obj->transform_.scale_.z);
+						ImGui::TreePop();
+					}
+					ImGui::TreePop();
+				}
+
+			}
+			ImGui::TreePop();
+		}
+	}ImGui::End();
+
+}
+
+bool Stage::Save()
+{
+	// セーブデータを生成する
+	json saveData; {
+		for (auto obj : objects_) {
+			saveData[obj->objectName_]["position_"] = { obj->transform_.position_.x,transform_.position_.y ,transform_.position_.z };
+			saveData[obj->objectName_]["rotate_"] = { obj->transform_.rotate_.x,transform_.rotate_.y ,transform_.rotate_.z };
+			saveData[obj->objectName_]["scale_"] = { obj->transform_.scale_.x,transform_.scale_.y ,transform_.scale_.z };
+			//saveData[obj->objectName_]["modelFilePath_"] = obj->modelFilePath_;
+		}
 	}
+
+	// セーブする
+	return JsonReader::Save("Data/stageObjects.json", saveData);
+}
+
+bool Stage::Load()
+{
+	// 保存されていない現在のデータを削除
+	for (auto obj : objects_) {
+		obj->KillMe();
+	}
+	objects_.clear();
+
+	json loadData;
+
+	// ロードする
+	if(JsonReader::Load("Data/stageObjects.json", loadData) == false)return false;
+
+	// ロードしたデータを使ってオブジェクトを復元する
+	for (auto it = loadData.begin(); it != loadData.end(); ++it) {
+		std::string objectName = it.key(); // オブジェクトの名前を取得
+
+		StageObject* obj = CreateStageObject(objectName, "Models/Stage/Floor.fbx", this);
+		// ロードしたデータから位置、回転、スケールを復元する
+		auto& transformData = it.value();
+		if (transformData.contains("position_")) {
+			obj->transform_.position_.x = transformData["position_"][0];
+			obj->transform_.position_.y = transformData["position_"][1];
+			obj->transform_.position_.z = transformData["position_"][2];
+		}
+		if (transformData.contains("rotate_")) {
+			obj->transform_.rotate_.x = transformData["rotate_"][0];
+			obj->transform_.rotate_.y = transformData["rotate_"][1];
+			obj->transform_.rotate_.z = transformData["rotate_"][2];
+		}
+		if (transformData.contains("scale_")) {
+			obj->transform_.scale_.x = transformData["scale_"][0];
+			obj->transform_.scale_.y = transformData["scale_"][1];
+			obj->transform_.scale_.z = transformData["scale_"][2];
+		}
+	}
+
+	return true;
+}
+
+StageObject* Stage::CreateStageObject(string _name, string _modelFilePath, GameObject* _parent)
+{
+	StageObject* obj = new StageObject(_name, _modelFilePath, _parent);
+	obj->Initialize();
+	if (_parent != nullptr)_parent->PushBackChild(obj);
+	objects_.push_back(obj);
+	return obj;
 }
