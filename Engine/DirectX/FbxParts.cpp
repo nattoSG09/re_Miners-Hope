@@ -484,7 +484,7 @@ void FbxParts::DrawSkinAnime(Transform& transform, FbxTime time)
 	{
 		FbxAnimEvaluator * evaluator = ppCluster_[i]->GetLink()->GetScene()->GetAnimationEvaluator();
 		FbxMatrix mCurrentOrentation = evaluator->GetNodeGlobalTransform(ppCluster_[i]->GetLink(), time);
-
+ 
 		// 行列コピー（Fbx形式からDirectXへの変換）
 		XMFLOAT4X4 pose;
 		for (DWORD x = 0; x < 4; x++)
@@ -494,13 +494,13 @@ void FbxParts::DrawSkinAnime(Transform& transform, FbxTime time)
 				pose(x, y) = (float)mCurrentOrentation.Get(x, y);
 			}
 		}
-
+ 
 		// オフセット時のポーズの差分を計算する
 		pBoneArray_[i].newPose = XMLoadFloat4x4(&pose);
 		pBoneArray_[i].diffPose = XMMatrixInverse(nullptr, pBoneArray_[i].bindPose);
 		pBoneArray_[i].diffPose *= pBoneArray_[i].newPose;
 	}
-
+ 
 	// 各ボーンに対応した頂点の変形制御
 	for (DWORD i = 0; i < vertexCount_; i++)
 	{
@@ -514,17 +514,18 @@ void FbxParts::DrawSkinAnime(Transform& transform, FbxTime time)
 				break;
 			}
 			matrix += pBoneArray_[pWeightArray_[i].pBoneIndex[m]].diffPose * pWeightArray_[i].pBoneWeight[m];
-
 		}
-
+ 
 		// 作成された関節行列を使って、頂点を変形する
 		XMVECTOR Pos = XMLoadFloat3(&pWeightArray_[i].posOrigin);
 		XMVECTOR Normal = XMLoadFloat3(&pWeightArray_[i].normalOrigin);
 		XMStoreFloat3(&pVertexData_[i].position,XMVector3TransformCoord(Pos, matrix));
-		XMStoreFloat3(&pVertexData_[i].normal, XMVector3TransformCoord(Normal, matrix));
-
+		XMFLOAT3X3 mat33;
+		XMStoreFloat3x3(&mat33, matrix);
+		XMMATRIX matrix33 = XMLoadFloat3x3(&mat33);
+		XMStoreFloat3(&pVertexData_[i].normal, XMVector3TransformCoord(Normal, matrix33));
 	}
-
+ 
 	// 頂点バッファをロックして、変形させた後の頂点情報で上書きする
 	D3D11_MAPPED_SUBRESOURCE msr = {};
 	Direct3D::pContext_->Map(pVertexBuffer_, 0, D3D11_MAP_WRITE_DISCARD, 0, &msr);
@@ -533,10 +534,9 @@ void FbxParts::DrawSkinAnime(Transform& transform, FbxTime time)
 		memcpy_s(msr.pData, msr.RowPitch, pVertexData_, sizeof(VERTEX) * vertexCount_);
 		Direct3D::pContext_->Unmap(pVertexBuffer_, 0);
 	}
-
-
+ 
 	Draw(transform);
-
+ 
 }
 
 void FbxParts::DrawMeshAnime(Transform& transform, FbxTime time, FbxScene * scene)
