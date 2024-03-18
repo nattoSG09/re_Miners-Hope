@@ -10,7 +10,7 @@ Stage::Stage(GameObject* parent)
 
 void Stage::Initialize()
 {
-	Load();
+	//Load();
 }
 
 void Stage::Update()
@@ -107,10 +107,20 @@ bool Stage::Save()
 	// セーブデータを生成する
 	json saveData; {
 		for (auto obj : objects_) {
-			saveData[obj->objectName_]["position_"] = { obj->transform_.position_.x,transform_.position_.y ,transform_.position_.z };
-			saveData[obj->objectName_]["rotate_"] = { obj->transform_.rotate_.x,transform_.rotate_.y ,transform_.rotate_.z };
-			saveData[obj->objectName_]["scale_"] = { obj->transform_.scale_.x,transform_.scale_.y ,transform_.scale_.z };
+			saveData[obj->objectName_]["position_"]["x"] = obj->transform_.position_.x;
+			saveData[obj->objectName_]["position_"]["y"] = obj->transform_.position_.y;
+			saveData[obj->objectName_]["position_"]["z"] = obj->transform_.position_.z;
+
+			saveData[obj->objectName_]["rotate_"]["x"] = obj->transform_.rotate_.x;
+			saveData[obj->objectName_]["rotate_"]["y"] = obj->transform_.rotate_.y;
+			saveData[obj->objectName_]["rotate_"]["z"] = obj->transform_.rotate_.z;
+
+			saveData[obj->objectName_]["scale_"]["x"] = obj->transform_.scale_.x;
+			saveData[obj->objectName_]["scale_"]["y"] = obj->transform_.scale_.y;
+			saveData[obj->objectName_]["scale_"]["z"] = obj->transform_.scale_.z;
+
 			saveData[obj->objectName_]["modelFilePath_"] = obj->modelFilePath_;
+
 		}
 	}
 
@@ -126,9 +136,8 @@ bool Stage::Load()
 	}
 	objects_.clear();
 
-	json loadData;
-
 	// ロードする
+	json loadData;
 	if(JsonReader::Load("Data/stageObjects.json", loadData) == false)return false;
 
 	// ロードしたデータを使ってオブジェクトを復元する
@@ -146,19 +155,19 @@ bool Stage::Load()
 		if (obj == nullptr)continue;
 
 		if (data.contains("position_")) {
-			obj->transform_.position_.x = data["position_"][0].get<float>();
-			obj->transform_.position_.y = data["position_"][1].get<float>();
-			obj->transform_.position_.z = data["position_"][2].get<float>();
+			obj->transform_.position_.x = data["position_"]["x"];
+			obj->transform_.position_.y = data["position_"]["y"];
+			obj->transform_.position_.z = data["position_"]["z"];
 		}
 		if (data.contains("rotate_")) {
-			obj->transform_.rotate_.x = data["rotate_"][0].get<float>();
-			obj->transform_.rotate_.y = data["rotate_"][1].get<float>();
-			obj->transform_.rotate_.z = data["rotate_"][2].get<float>();
+			obj->transform_.rotate_.x = data["rotate_"]["x"];
+			obj->transform_.rotate_.y = data["rotate_"]["y"];
+			obj->transform_.rotate_.z = data["rotate_"]["z"];
 		}
 		if (data.contains("scale_")) {
-			obj->transform_.scale_.x = data["scale_"][0].get<float>();
-			obj->transform_.scale_.y = data["scale_"][1].get<float>();
-			obj->transform_.scale_.z = data["scale_"][2].get<float>();
+			obj->transform_.scale_.x = data["scale_"]["x"];
+			obj->transform_.scale_.y = data["scale_"]["y"];
+			obj->transform_.scale_.z = data["scale_"]["z"];
 		}
 	}
 
