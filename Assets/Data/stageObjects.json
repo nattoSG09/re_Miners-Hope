@@ -1,1 +1,1 @@
-{"Floor1":{"position_":[0.0,0.0,0.0],"rotate_":[0.0,0.0,0.0],"scale_":[1.0,1.0,1.0]}}
+{"Floor1":{"modelFilePath_":"Models/Stage/Floor.fbx","position_":[0.0,0.0,0.0],"rotate_":[0.0,0.0,0.0],"scale_":[0.5,1.0,1.0]},"Floor2":{"modelFilePath_":"Models/Stage/Floor.fbx","position_":[51.0,0.0,0.0],"rotate_":[10.0,0.0,0.0],"scale_":[1.0,1.0,1.0]},"Wall3":{"modelFilePath_":"Models/Stage/Wall.fbx","position_":[10.0,0.0,0.0],"rotate_":[0.0,0.0,0.0],"scale_":[3.0,1.0,1.0]}}

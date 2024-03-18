@@ -62,6 +62,9 @@ void Stage::Edit()
 			if (ImGui::Button("Floor")) {
 				CreateStageObject("Floor" + std::to_string(objects_.size() + 1), "Models/Stage/Floor.fbx", this);
 			}
+			if (ImGui::Button("Wall")) {
+				CreateStageObject("Wall" + std::to_string(objects_.size() + 1), "Models/Stage/Wall.fbx", this);
+			}
 			ImGui::TreePop();
 		}
 
@@ -107,7 +110,7 @@ bool Stage::Save()
 			saveData[obj->objectName_]["position_"] = { obj->transform_.position_.x,transform_.position_.y ,transform_.position_.z };
 			saveData[obj->objectName_]["rotate_"] = { obj->transform_.rotate_.x,transform_.rotate_.y ,transform_.rotate_.z };
 			saveData[obj->objectName_]["scale_"] = { obj->transform_.scale_.x,transform_.scale_.y ,transform_.scale_.z };
-			//saveData[obj->objectName_]["modelFilePath_"] = obj->modelFilePath_;
+			saveData[obj->objectName_]["modelFilePath_"] = obj->modelFilePath_;
 		}
 	}
 
@@ -132,23 +135,30 @@ bool Stage::Load()
 	for (auto it = loadData.begin(); it != loadData.end(); ++it) {
 		std::string objectName = it.key(); // オブジェクトの名前を取得
 
-		StageObject* obj = CreateStageObject(objectName, "Models/Stage/Floor.fbx", this);
 		// ロードしたデータから位置、回転、スケールを復元する
-		auto& transformData = it.value();
-		if (transformData.contains("position_")) {
-			obj->transform_.position_.x = transformData["position_"][0];
-			obj->transform_.position_.y = transformData["position_"][1];
-			obj->transform_.position_.z = transformData["position_"][2];
+		auto& data = it.value();
+
+		StageObject* obj = nullptr;
+		if (data.contains("modelFilePath_")) {
+			obj = CreateStageObject(objectName, data["modelFilePath_"], this);
 		}
-		if (transformData.contains("rotate_")) {
-			obj->transform_.rotate_.x = transformData["rotate_"][0];
-			obj->transform_.rotate_.y = transformData["rotate_"][1];
-			obj->transform_.rotate_.z = transformData["rotate_"][2];
+
+		if (obj == nullptr)continue;
+
+		if (data.contains("position_")) {
+			obj->transform_.position_.x = data["position_"][0].get<float>();
+			obj->transform_.position_.y = data["position_"][1].get<float>();
+			obj->transform_.position_.z = data["position_"][2].get<float>();
 		}
-		if (transformData.contains("scale_")) {
-			obj->transform_.scale_.x = transformData["scale_"][0];
-			obj->transform_.scale_.y = transformData["scale_"][1];
-			obj->transform_.scale_.z = transformData["scale_"][2];
+		if (data.contains("rotate_")) {
+			obj->transform_.rotate_.x = data["rotate_"][0].get<float>();
+			obj->transform_.rotate_.y = data["rotate_"][1].get<float>();
+			obj->transform_.rotate_.z = data["rotate_"][2].get<float>();
+		}
+		if (data.contains("scale_")) {
+			obj->transform_.scale_.x = data["scale_"][0].get<float>();
+			obj->transform_.scale_.y = data["scale_"][1].get<float>();
+			obj->transform_.scale_.z = data["scale_"][2].get<float>();
 		}
 	}
 
