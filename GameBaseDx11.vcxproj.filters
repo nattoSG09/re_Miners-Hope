@@ -157,6 +157,7 @@
     </ClCompile>
     <ClCompile Include="Game\Objects\Stages\Stage.cpp" />
     <ClCompile Include="Game\Objects\Stages\StageObject.cpp" />
+    <ClCompile Include="Game\Objects\EditorCamera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Global.h">
@@ -275,6 +276,7 @@
     </ClInclude>
     <ClInclude Include="Game\Objects\Stages\Stage.h" />
     <ClInclude Include="Game\Objects\Stages\StageObject.h" />
+    <ClInclude Include="Game\Objects\EditorCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shader\Simple2D.hlsl">

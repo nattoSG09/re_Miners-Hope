@@ -4,6 +4,7 @@
 #include "../Objects/Stages/Stage.h"
 
 #include "../../Engine/ImGui/imgui.h"
+#include "../Objects/EditorCamera.h"
 
 
 TestScene::TestScene(GameObject * parent)
@@ -13,8 +14,8 @@ TestScene::TestScene(GameObject * parent)
 
 void TestScene::Initialize()
 {
-	// ステージを配置
-	Instantiate<Stage>(this);
+	// ステージを制作
+	CreateStage("Data/stageObjects.json", this);
 
 	// プレイヤーを配置
 	pPlayer_ = Instantiate<Player>(this); 
@@ -22,12 +23,17 @@ void TestScene::Initialize()
 	// カメラを配置
 	pCamera_ = Instantiate<TPSCamera>(this); {
 		// プレイヤーに焦点を合わせる
-		pCamera_->SetTarget(nullptr);
+		pCamera_->SetTarget(pPlayer_);
 	}
+	EditorCamera* ec = Instantiate<EditorCamera>(this); {
+		ec->ON();
+	}
+	
 }
 
 void TestScene::Update()
 {
+#ifdef _DEBUG
 	ImGui::Begin("Editor", nullptr, ImGuiWindowFlags_MenuBar); {
 		static bool camMode = false;
 		ImGui::Checkbox("TPS ON", &camMode);
@@ -37,6 +43,9 @@ void TestScene::Update()
 	}ImGui::End();
 	
 	ImGui::Text("debug texts...");
+
+#endif // _DEBUG
+
 }
 
 void TestScene::Draw()

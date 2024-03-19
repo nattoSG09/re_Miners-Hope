@@ -3,14 +3,14 @@
 #include "../../../Engine/Json/JsonReader.h"
 #include "StageObject.h"
 
-Stage::Stage(GameObject* parent)
-	:GameObject(parent,"Stage")
+Stage::Stage(GameObject* parent, string _modelFileName)
+	:GameObject(parent, "Stage"),modelFileName_(_modelFileName)
 {
 }
 
 void Stage::Initialize()
 {
-	//Load();
+	Load(modelFileName_);
 }
 
 void Stage::Update()
@@ -37,12 +37,12 @@ void Stage::Edit()
 			{
 				// セーブする
 				if (ImGui::MenuItem("Save")) {
-					Save();
+					Save(modelFileName_);
 				}
 
 				// ロードする
 				if (ImGui::MenuItem("Load")) {
-					Load();
+					Load(modelFileName_);
 				}
 
 				// 削除を行う
@@ -102,7 +102,7 @@ void Stage::Edit()
 
 }
 
-bool Stage::Save()
+bool Stage::Save(string _modelFileName)
 {
 	// セーブデータを生成する
 	json saveData; {
@@ -125,10 +125,10 @@ bool Stage::Save()
 	}
 
 	// セーブする
-	return JsonReader::Save("Data/stageObjects.json", saveData);
+	return JsonReader::Save(_modelFileName, saveData);
 }
 
-bool Stage::Load()
+bool Stage::Load(string _modelFileName)
 {
 	// 保存されていない現在のデータを削除
 	for (auto obj : objects_) {
@@ -138,7 +138,7 @@ bool Stage::Load()
 
 	// ロードする
 	json loadData;
-	if(JsonReader::Load("Data/stageObjects.json", loadData) == false)return false;
+	if(JsonReader::Load(_modelFileName, loadData) == false)return false;
 
 	// ロードしたデータを使ってオブジェクトを復元する
 	for (auto it = loadData.begin(); it != loadData.end(); ++it) {
@@ -181,4 +181,13 @@ StageObject* Stage::CreateStageObject(string _name, string _modelFilePath, GameO
 	if (_parent != nullptr)_parent->PushBackChild(obj);
 	objects_.push_back(obj);
 	return obj;
+}
+
+Stage* CreateStage(string _modelFilePath, GameObject* parent)
+{
+	Stage* stage = new Stage(parent, _modelFilePath);
+	stage->Initialize();
+
+	if (parent != nullptr)parent->PushBackChild(stage);
+	return stage;
 }
