@@ -557,19 +557,40 @@ void FbxParts::DrawMeshAnime(Transform& transform, FbxTime time, FbxScene * scen
 	Draw(transform);
 }
 
+// 関数: FbxAMatrix型をXMMATRIX型に変換する
+XMMATRIX ConvertFbxAMatrixToXMMATRIX(const FbxAMatrix& fbxMatrix) {
+	XMMATRIX xmMatrix;
+
+	// FbxAMatrixの値をXMMATRIXにコピーする
+	xmMatrix = XMMATRIX(
+		static_cast<float>(fbxMatrix[0][0]), static_cast<float>(fbxMatrix[0][1]), static_cast<float>(fbxMatrix[0][2]), static_cast<float>(fbxMatrix[0][3]),
+		static_cast<float>(fbxMatrix[1][0]), static_cast<float>(fbxMatrix[1][1]), static_cast<float>(fbxMatrix[1][2]), static_cast<float>(fbxMatrix[1][3]),
+		static_cast<float>(fbxMatrix[2][0]), static_cast<float>(fbxMatrix[2][1]), static_cast<float>(fbxMatrix[2][2]), static_cast<float>(fbxMatrix[2][3]),
+		static_cast<float>(fbxMatrix[3][0]), static_cast<float>(fbxMatrix[3][1]), static_cast<float>(fbxMatrix[3][2]), static_cast<float>(fbxMatrix[3][3])
+	);
+
+	return xmMatrix;
+}
+
 bool FbxParts::GetBonePosition(std::string boneName, XMFLOAT3 * position)
 {
 	for (int i = 0; i < numBone_; i++)
 	{
 		if (boneName == ppCluster_[i]->GetLink()->GetName())
 		{
-			FbxAMatrix  matrix;
+			FbxAMatrix matrix;
 			ppCluster_[i]->GetTransformLinkMatrix(matrix);
+			XMMATRIX xmMatrix = ConvertFbxAMatrixToXMMATRIX(matrix);
 
-			position->x = (float)matrix[3][0];
-			position->y = (float)matrix[3][1];
-			position->z = (float)matrix[3][2];
+			// pBoneArray_[i].newPose は新しいポーズの変換行列と仮定します。
+			// この行列も DirectX Math の XMMATRIX 型とする必要があります。
+			xmMatrix *= pBoneArray_[i].newPose;
 
+			// ボーンの位置を取得
+			XMVECTOR positionVec = xmMatrix.r[3]; // ボーンの位置は変換行列の4行目に格納されている
+
+			// 取得したベクトルを XMFLOAT3 にコピー
+			XMStoreFloat3(position, positionVec);
 			return true;
 		}
 

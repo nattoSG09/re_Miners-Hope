@@ -6,19 +6,23 @@
 #include "TPSCamera.h"
 
 Player::Player(GameObject* parent)
-	:GameObject(parent,"Player"),hModel_(-1)
+	:GameObject(parent,"Player"),hModel_(-1),hmDebug_(-1)
 {
 }
 
 void Player::Initialize()
 {
 	hModel_ = Model::Load("Models/Player/Walking.fbx");
+	hmDebug_ = Model::Load("DebugCollision/BoxCollider.fbx");
+
 	assert(0 <= hModel_);
+	Model::SetAnimFrame(hModel_, 0, 60, 1);
 }
 
 void Player::Update()
 {
-
+	XMFLOAT3 bonePose = Model::GetBonePosition(hModel_, "mixamorig:RightHandIndex1");
+	ImGui::Text("bonePose = %f,%f,%f", bonePose.x, bonePose.y, bonePose.z);
 	Walking();
 }
 
@@ -26,6 +30,11 @@ void Player::Draw()
 {
 	Model::SetTransform(hModel_, transform_);
 	Model::Draw(hModel_);
+
+	Transform t;
+	t.position_ = Model::GetBonePosition(hModel_, "mixamorig:RightHandIndex1");
+	Model::SetTransform(hmDebug_, t);
+	Model::Draw(hmDebug_);
 }
 
 void Player::Release()
@@ -84,7 +93,7 @@ void Player::Walking()
 	}
 
 	// アニメーションを行う
-	static bool prevAnim = false;
+	/*static bool prevAnim = false;
 	if (isAnim == true) {
 		if (prevAnim == false)Model::SetAnimFrame(hModel_, 0, 60, 1);
 		prevAnim = true;
@@ -92,5 +101,5 @@ void Player::Walking()
 	else {
 		Model::SetAnimFrame(hModel_, 0, 0, 0);
 		prevAnim = false;
-	}
+	}*/
 }

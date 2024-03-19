@@ -4,6 +4,7 @@ class Player : public GameObject
 {
 	int hModel_;
 
+	int hmDebug_;
 public:
 	Player(GameObject* parent);
 	void Initialize() override;
