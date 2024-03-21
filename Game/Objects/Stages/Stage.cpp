@@ -147,12 +147,10 @@ void Stage::Edit()
 					}
 					ImGui::TreePop();
 				}
-
 			}
 			ImGui::TreePop();
 		}
 	}ImGui::End();
-
 }
 
 bool Stage::Save(string _modelFileName)

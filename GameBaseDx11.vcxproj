@@ -125,6 +125,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Game\Objects\UI\CrossHair.cpp" />
     <ClCompile Include="Game\Objects\EditorCamera.cpp" />
     <ClCompile Include="Engine\Collider\BoxCollider.cpp" />
     <ClCompile Include="Engine\Collider\Collider.cpp" />
@@ -164,8 +165,10 @@
     <ClCompile Include="Game\Objects\Stages\Stage.cpp" />
     <ClCompile Include="Game\Objects\Stages\StageObject.cpp" />
     <ClCompile Include="Game\Objects\SkySphere.cpp" />
+    <ClCompile Include="Game\Objects\UI\UIPanel.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Game\Objects\UI\CrossHair.h" />
     <ClInclude Include="Game\Objects\EditorCamera.h" />
     <ClInclude Include="Engine\Collider\BoxCollider.h" />
     <ClInclude Include="Engine\Collider\Collider.h" />
@@ -208,6 +211,7 @@
     <ClInclude Include="Game\Objects\Stages\Stage.h" />
     <ClInclude Include="Game\Objects\Stages\StageObject.h" />
     <ClInclude Include="Game\Objects\SkySphere.h" />
+    <ClInclude Include="Game\Objects\UI\UIPanel.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shader\BillBoard.hlsl">

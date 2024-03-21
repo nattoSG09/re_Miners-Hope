@@ -54,7 +54,7 @@ void TPSCamera::Update()
        XMVECTOR center_To_camTarget = { 0,0,1,0 };
        center_To_camTarget = XMVector3Transform(center_To_camTarget, rotateY);
        // 長さを加える
-       float center_To_camTargetDistance = 7.f;
+       float center_To_camTargetDistance = 5.f;
        if (Input::IsMouseButton(1))center_To_camTargetDistance = 3.f;
        center_To_camTarget *= center_To_camTargetDistance;
        // 原点からの位置を求めて、カメラの焦点を設定

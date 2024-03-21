@@ -13,7 +13,6 @@ Player::Player(GameObject* parent)
 void Player::Initialize()
 {
 	hModel_ = Model::Load("Models/Player/Walking.fbx");
-
 	assert(0 <= hModel_);
 }
 

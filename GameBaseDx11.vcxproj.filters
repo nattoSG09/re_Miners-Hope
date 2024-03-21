@@ -51,6 +51,12 @@
     <Filter Include="03Game\Objects\Stage">
       <UniqueIdentifier>{ce7d77be-f524-434d-bb88-51cb9fae7610}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03Game\Objects\GUI">
+      <UniqueIdentifier>{212346b5-5035-4947-bc30-0cc222b2d359}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03Game\Objects\Camera">
+      <UniqueIdentifier>{a090a9ff-6f99-4594-a215-bc151e71a72b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Main.cpp">
@@ -155,19 +161,25 @@
     <ClCompile Include="Game\Objects\Player.cpp">
       <Filter>03Game\Objects\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Objects\TPSCamera.cpp">
-      <Filter>03Game\Objects\Player</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Objects\Stages\Stage.cpp">
       <Filter>03Game\Objects\Stage</Filter>
     </ClCompile>
     <ClCompile Include="Game\Objects\Stages\StageObject.cpp">
       <Filter>03Game\Objects\Stage</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Objects\UI\UIPanel.cpp">
+      <Filter>03Game\Objects\GUI</Filter>
+    </ClCompile>
     <ClCompile Include="Game\Objects\EditorCamera.cpp">
+      <Filter>03Game\Objects\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Objects\TPSCamera.cpp">
+      <Filter>03Game\Objects\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Objects\SkySphere.cpp">
       <Filter>03Game\Objects\Stage</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Objects\SkySphere.cpp" />
+    <ClCompile Include="Game\Objects\UI\CrossHair.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Global.h">
@@ -281,19 +293,25 @@
     <ClInclude Include="Game\Objects\Player.h">
       <Filter>03Game\Objects\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Objects\TPSCamera.h">
-      <Filter>03Game\Objects\Player</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Objects\Stages\Stage.h">
       <Filter>03Game\Objects\Stage</Filter>
     </ClInclude>
     <ClInclude Include="Game\Objects\Stages\StageObject.h">
       <Filter>03Game\Objects\Stage</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Objects\UI\UIPanel.h">
+      <Filter>03Game\Objects\GUI</Filter>
+    </ClInclude>
     <ClInclude Include="Game\Objects\EditorCamera.h">
+      <Filter>03Game\Objects\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objects\TPSCamera.h">
+      <Filter>03Game\Objects\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objects\SkySphere.h">
       <Filter>03Game\Objects\Stage</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Objects\SkySphere.h" />
+    <ClInclude Include="Game\Objects\UI\CrossHair.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shader\Simple2D.hlsl">
