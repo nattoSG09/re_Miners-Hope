@@ -57,6 +57,9 @@
     <Filter Include="03Game\Objects\Camera">
       <UniqueIdentifier>{a090a9ff-6f99-4594-a215-bc151e71a72b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03Game\Objects\Enemy">
+      <UniqueIdentifier>{ae117e51-9892-4e83-8837-c1748833c7c4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Main.cpp">
@@ -185,6 +188,9 @@
     <ClCompile Include="Game\Objects\UI\TitleImage.cpp">
       <Filter>03Game\Objects\GUI</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Objects\Enemy.cpp">
+      <Filter>03Game\Objects\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Global.h">
@@ -295,9 +301,6 @@
     <ClInclude Include="Game\Scenes\TestScene.h">
       <Filter>03Game\Scenes\TestScene</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Objects\Player.h">
-      <Filter>03Game\Objects\Player</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Objects\Stages\Stage.h">
       <Filter>03Game\Objects\Stage</Filter>
     </ClInclude>
@@ -321,6 +324,12 @@
     </ClInclude>
     <ClInclude Include="Game\Objects\UI\TitleImage.h">
       <Filter>03Game\Objects\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objects\Enemy.h">
+      <Filter>03Game\Objects\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objects\Player.h">
+      <Filter>03Game\Objects\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

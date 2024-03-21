@@ -7,6 +7,7 @@
 
 #include "../../Engine/ImGui/imgui.h"
 #include "../Objects/EditorCamera.h"
+#include "../Objects/Enemy.h"
 
 
 
@@ -44,6 +45,10 @@ void TestScene::Initialize()
 
 	// UI‚ð”z’u
 	Instantiate<UIPanel>(this);
+
+	Enemy* e = Instantiate<Enemy>(this); {
+		e->SetPosition(30, 0, 30);
+	}
 }
 
 void TestScene::Update()
