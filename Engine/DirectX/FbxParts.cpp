@@ -615,16 +615,26 @@ void FbxParts::RayCast(RayCastData * data)
 			ver[1] = pVertexData_[ppIndexData_[i][j * 3 + 1]].position;
 			ver[2] = pVertexData_[ppIndexData_[i][j * 3 + 2]].position;
 
+			//3頂点をベクトルに変換
+			XMVECTOR vec[3];
+			vec[0] = XMLoadFloat3(&ver[0]);
+			vec[1] = XMLoadFloat3(&ver[1]);
+			vec[2] = XMLoadFloat3(&ver[2]);
+
 			BOOL  hit = FALSE;
 			float dist = 0.0f;
 
 			hit = Direct3D::Intersect(data->start, data->dir, ver[0], ver[1], ver[2], &dist);
 
+			//３頂点から外積を取得し、ポリゴンに垂直な法線を取得
+			XMVECTOR polygonNormal =
+				XMVector3Cross(XMVectorSubtract(vec[1], vec[0]), XMVectorSubtract(vec[2], vec[0]));
 
 			if (hit && dist < data->dist)
 			{
 				data->hit = TRUE;
 				data->dist = dist;
+				data->normal = polygonNormal;
 			}
 		}
 	}
