@@ -7,6 +7,8 @@
 #include "../../Engine/DirectX/Direct3D.h"
 #include "Stages/Stage.h"
 #include "Stages/StageObject.h"
+#include "Enemy.h"
+#include "../../Engine/ResourceManager/VFX.h"
 
 Player::Player(GameObject* parent)
 	:GameObject(parent,"Player"),hModel_(-1)
@@ -23,6 +25,8 @@ void Player::Initialize()
 void Player::Update()
 {
 	Walking();
+
+	if(Input::IsMouseButton(0))EnemyAttack();
 }
 
 void Player::Draw()
@@ -142,4 +146,66 @@ bool Player::IsCollide(XMVECTOR dir)
 	}
 	
 	return false;
+}
+
+void Player::EnemyAttack()
+{
+	Enemy* e = (Enemy*)FindObject("Enemy");
+	if (e == nullptr)return;
+	// 視線ベクトルを取得
+	XMVECTOR sightline = XMVector3Normalize(Camera::GetSightline());
+
+	// レイキャストを発射
+	RayCastData sightRay; {
+		XMStoreFloat3(&sightRay.dir, sightline);
+		sightRay.start = Camera::GetPosition();
+		Model::RayCast(e->GetModelHandle(), &sightRay);
+	}
+
+	if (sightRay.hit) {
+		// Effectを出す
+		{
+			EmitterData data;
+
+			//炎
+			data.textureFileName = "Images/cloudA.png";
+
+			data.position = sightRay.pos;
+			ImGui::Text("pos = %f,%f,%f", data.position.x, data.position.y, data.position.z);
+			data.delay = 0;
+			data.number = 80;
+			data.lifeTime = 30;
+			data.direction = XMFLOAT3(0, 1, 0);
+			data.directionRnd = XMFLOAT3(90, 90, 90);
+			data.speed = 0.1f;
+			data.speedRnd = 0.8;
+			data.size = XMFLOAT2(1.2, 1.2);
+			data.sizeRnd = XMFLOAT2(0.4, 0.4);
+			data.scale = XMFLOAT2(1.05, 1.05);
+			data.color = XMFLOAT4(0.5, 0.5, 0.1, 1);
+			data.deltaColor = XMFLOAT4(0, -1.0 / 20, 0, -1.0 / 20);
+			VFX::Start(data);
+
+			//火の粉
+			data.delay = 0;
+			data.number = 80;
+			data.lifeTime = 100;
+			data.positionRnd = XMFLOAT3(0.5, 0, 0.5);
+			data.direction = XMFLOAT3(0, 1, 0);
+			data.directionRnd = XMFLOAT3(90, 90, 90);
+			data.speed = 0.25f;
+			data.speedRnd = 1;
+			data.accel = 0.93;
+			data.size = XMFLOAT2(0.1, 0.1);
+			data.sizeRnd = XMFLOAT2(0.4, 0.4);
+			data.scale = XMFLOAT2(0.99, 0.99);
+			data.color = XMFLOAT4(0.4, 0.2, 0.0, 1);
+			data.deltaColor = XMFLOAT4(0, 0, 0, 0);
+			data.gravity = 0.003f;
+			VFX::Start(data);
+		}
+
+		// 攻撃する
+		//e->SetHP(pEnemy_->GetHP() - 20);
+	}
 }

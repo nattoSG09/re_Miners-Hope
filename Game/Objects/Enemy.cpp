@@ -10,7 +10,7 @@ Enemy::Enemy(GameObject* parent)
 void Enemy::Initialize()
 {
 	hModel_ = Model::Load("Models/Enemy/Walking.fbx");
-	Model::SetAnimFrame(hModel_, 0, 82, 1);
+	//Model::SetAnimFrame(hModel_, 0, 82, 1);
 }
 
 void Enemy::Update()

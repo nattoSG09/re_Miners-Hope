@@ -16,5 +16,6 @@ private:
 	void Move(XMVECTOR dir,float speed);
 	void Walking();
 	bool IsCollide(XMVECTOR dir);
+	void EnemyAttack();
 };
 

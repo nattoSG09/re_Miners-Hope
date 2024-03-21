@@ -12,5 +12,6 @@ public:
 	void Release() override;
 
 	void Move(XMVECTOR dir, float speed);
+	int GetModelHandle() { return hModel_; }
 };
 
