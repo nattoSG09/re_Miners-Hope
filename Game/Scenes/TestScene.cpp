@@ -25,8 +25,8 @@ void TestScene::Initialize()
 		// プレイヤーに焦点を合わせる
 		pCamera_->SetTarget(pPlayer_);
 	}
-	EditorCamera* ec = Instantiate<EditorCamera>(this); {
-		ec->ON();
+	ec_ = Instantiate<EditorCamera>(this); {
+		ec_->ON();
 	}
 	
 }
@@ -37,9 +37,15 @@ void TestScene::Update()
 	ImGui::Begin("Editor", nullptr, ImGuiWindowFlags_MenuBar); {
 		static bool camMode = false;
 		ImGui::Checkbox("TPS ON", &camMode);
-		if (camMode)pCamera_->SetTarget(pPlayer_);
-		else pCamera_->SetTarget(nullptr);
+		if (camMode) {
+			pCamera_->SetTarget(pPlayer_);
+			ec_->OFF();
 
+		}
+		else {
+			pCamera_->SetTarget(nullptr);
+			ec_->ON();
+		}
 	}ImGui::End();
 	
 	ImGui::Text("debug texts...");

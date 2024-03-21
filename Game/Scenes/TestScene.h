@@ -3,11 +3,13 @@
 
 class Player;
 class TPSCamera;
+class EditorCamera;
 
 class TestScene : public GameObject
 {
 	Player* pPlayer_;
 	TPSCamera* pCamera_;
+	EditorCamera* ec_;
 public:
 	TestScene(GameObject* parent);
 	void Initialize() override;
