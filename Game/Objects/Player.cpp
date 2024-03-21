@@ -26,7 +26,7 @@ void Player::Update()
 {
 	Walking();
 
-	if(Input::IsMouseButton(0))EnemyAttack();
+	//if(Input::IsMouseButton(0))EnemyAttack();
 }
 
 void Player::Draw()
@@ -150,6 +150,8 @@ bool Player::IsCollide(XMVECTOR dir)
 
 void Player::EnemyAttack()
 {
+	// –¢Š®¬...ŒŸØ’†
+
 	Enemy* e = (Enemy*)FindObject("Enemy");
 	if (e == nullptr)return;
 	// ‹üƒxƒNƒgƒ‹‚ğæ“¾
