@@ -105,7 +105,35 @@ void Stage::Edit()
 
 				ImGui::TreePop();
 			}
-			
+
+			if (ImGui::TreeNode("platform_parts")) {
+				if (ImGui::Button("platform_center.fbx")) {
+					CreateStageObject("platform_center" + std::to_string(objects_.size() + 1), "Models/Stage/platform_center.fbx", this);
+				}
+				if (ImGui::Button("platform_corner.fbx")) {
+					CreateStageObject("platform_corner" + std::to_string(objects_.size() + 1), "Models/Stage/platform_corner.fbx", this);
+				}
+				if (ImGui::Button("platform_cornerOpen.fbx")) {
+					CreateStageObject("platform_cornerOpen" + std::to_string(objects_.size() + 1), "Models/Stage/platform_cornerOpen.fbx", this);
+				}
+				if (ImGui::Button("platform_end.fbx")) {
+					CreateStageObject("platform_end" + std::to_string(objects_.size() + 1), "Models/Stage/platform_end.fbx", this);
+				}
+				if (ImGui::Button("platform_straight.fbx")) {
+					CreateStageObject("platform_straight" + std::to_string(objects_.size() + 1), "Models/Stage/platform_straight.fbx", this);
+				}
+				ImGui::TreePop();
+			}
+
+			if (ImGui::TreeNode("others")) {
+				if (ImGui::Button("gate_complex.fbx")) {
+					CreateStageObject("gate_complex" + std::to_string(objects_.size() + 1), "Models/Stage/gate_complex.fbx", this);
+				}
+				if (ImGui::Button("hangar_largeA.fbx")) {
+					CreateStageObject("hangar_largeA" + std::to_string(objects_.size() + 1), "Models/Stage/hangar_largeA.fbx", this);
+				}
+				ImGui::TreePop();
+			}
 			ImGui::TreePop();
 		}
 

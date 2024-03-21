@@ -1,9 +1,9 @@
 #pragma once
 #include "../../../Engine/GameObject/GameObject.h"
 
-class CrossHair : GameObject
+class CrossHair : public GameObject
 {
-	int hModel_;
+	int hPict_;
 public:
 	CrossHair(GameObject* parent);
 	void Initialize() override;

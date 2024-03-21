@@ -179,7 +179,9 @@
     <ClCompile Include="Game\Objects\SkySphere.cpp">
       <Filter>03Game\Objects\Stage</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Objects\UI\CrossHair.cpp" />
+    <ClCompile Include="Game\Objects\UI\CrossHair.cpp">
+      <Filter>03Game\Objects\GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Global.h">
@@ -311,7 +313,9 @@
     <ClInclude Include="Game\Objects\SkySphere.h">
       <Filter>03Game\Objects\Stage</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Objects\UI\CrossHair.h" />
+    <ClInclude Include="Game\Objects\UI\CrossHair.h">
+      <Filter>03Game\Objects\GUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shader\Simple2D.hlsl">

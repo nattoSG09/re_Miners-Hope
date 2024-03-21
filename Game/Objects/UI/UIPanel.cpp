@@ -1,4 +1,5 @@
 #include "UIPanel.h"
+#include "CrossHair.h"
 
 UIPanel::UIPanel(GameObject* parent)
 	:GameObject(parent,"UIPanel")
@@ -8,6 +9,7 @@ UIPanel::UIPanel(GameObject* parent)
 
 void UIPanel::Initialize()
 {
+	Instantiate<CrossHair>(this);
 }
 
 void UIPanel::Update()

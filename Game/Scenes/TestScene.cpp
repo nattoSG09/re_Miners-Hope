@@ -18,8 +18,6 @@ TestScene::TestScene(GameObject * parent)
 
 void TestScene::Initialize()
 {
-	// UIを接地
-	Instantiate<UIPanel>(this);
 
 	// ステージを制作
 	CreateStage("Data/stageObjects.json", this);
@@ -37,11 +35,15 @@ void TestScene::Initialize()
 	ec_ = Instantiate<EditorCamera>(this); {
 		ec_->ON();
 	}
+
+
 #endif // _DEBUG
 
 	// スカイスフィアを配置
 	Instantiate<SkySphere>(this);
 
+	// UIを配置
+	Instantiate<UIPanel>(this);
 }
 
 void TestScene::Update()
