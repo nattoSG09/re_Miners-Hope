@@ -2,9 +2,12 @@
 #include "../Objects/Player.h"
 #include "../Objects/TPSCamera.h"
 #include "../Objects/Stages/Stage.h"
+#include "../Objects/SkySphere.h"
 
 #include "../../Engine/ImGui/imgui.h"
 #include "../Objects/EditorCamera.h"
+
+
 
 
 TestScene::TestScene(GameObject * parent)
@@ -25,10 +28,16 @@ void TestScene::Initialize()
 		// プレイヤーに焦点を合わせる
 		pCamera_->SetTarget(pPlayer_);
 	}
+#ifdef _DEBUG
+
+
 	ec_ = Instantiate<EditorCamera>(this); {
 		ec_->ON();
 	}
+#endif // _DEBUG
 	
+	Instantiate<SkySphere>(this);
+
 }
 
 void TestScene::Update()

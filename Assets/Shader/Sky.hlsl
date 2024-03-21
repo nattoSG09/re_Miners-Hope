@@ -96,7 +96,7 @@ float4 PS(VS_OUT inData) : SV_Target
 
 	//環境光（アンビエント）
 	//これはMaya側で指定し、グローバル変数で受け取ったものをそのまま
-    float4 ambient = float4(0.5f, 0.5f, 0.5f,1.f);
+    float4 ambient = float4(0.1f, 0.1f, 0.1f,1.f);
 
 	//鏡面反射光（スペキュラー）
 	float4 speculer = float4(0, 0, 0, 0);	//とりあえずハイライトは無しにしておいて…
@@ -107,5 +107,5 @@ float4 PS(VS_OUT inData) : SV_Target
 	}
 
 	//最終的な色
-    return diffuse * shade + diffuse * ambient + speculer;
+    return (diffuse + diffuse * ambient + speculer) * float4(0.9f,5.f,0.5f,1.f);
 }

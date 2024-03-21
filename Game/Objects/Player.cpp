@@ -19,8 +19,6 @@ void Player::Initialize()
 
 void Player::Update()
 {
-	XMFLOAT3 bonePose = Model::GetBonePosition(hModel_, "mixamorig:RightHandIndex1");
-	ImGui::Text("bonePose = %f,%f,%f", bonePose.x, bonePose.y, bonePose.z);
 	Walking();
 }
 

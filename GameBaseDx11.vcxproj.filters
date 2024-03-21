@@ -48,6 +48,9 @@
     <Filter Include="03Game\Objects\Player">
       <UniqueIdentifier>{a083c9f6-5a3a-4ba8-9270-a2551c27fe5e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03Game\Objects\Stage">
+      <UniqueIdentifier>{ce7d77be-f524-434d-bb88-51cb9fae7610}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Main.cpp">
@@ -155,9 +158,16 @@
     <ClCompile Include="Game\Objects\TPSCamera.cpp">
       <Filter>03Game\Objects\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Objects\Stages\Stage.cpp" />
-    <ClCompile Include="Game\Objects\Stages\StageObject.cpp" />
-    <ClCompile Include="Game\Objects\EditorCamera.cpp" />
+    <ClCompile Include="Game\Objects\Stages\Stage.cpp">
+      <Filter>03Game\Objects\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Objects\Stages\StageObject.cpp">
+      <Filter>03Game\Objects\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Objects\EditorCamera.cpp">
+      <Filter>03Game\Objects\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Objects\SkySphere.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Global.h">
@@ -274,9 +284,16 @@
     <ClInclude Include="Game\Objects\TPSCamera.h">
       <Filter>03Game\Objects\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Objects\Stages\Stage.h" />
-    <ClInclude Include="Game\Objects\Stages\StageObject.h" />
-    <ClInclude Include="Game\Objects\EditorCamera.h" />
+    <ClInclude Include="Game\Objects\Stages\Stage.h">
+      <Filter>03Game\Objects\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objects\Stages\StageObject.h">
+      <Filter>03Game\Objects\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objects\EditorCamera.h">
+      <Filter>03Game\Objects\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objects\SkySphere.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shader\Simple2D.hlsl">
@@ -289,6 +306,9 @@
       <Filter>02Shader</Filter>
     </FxCompile>
     <FxCompile Include="Assets\Shader\BillBoard.hlsl">
+      <Filter>02Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="Assets\Shader\Sky.hlsl">
       <Filter>02Shader</Filter>
     </FxCompile>
   </ItemGroup>

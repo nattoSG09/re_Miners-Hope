@@ -11,6 +11,7 @@ Stage::Stage(GameObject* parent, string _modelFileName)
 void Stage::Initialize()
 {
 	Load(modelFileName_);
+	transform_.scale_ = { 2.f,2.f,2.f };
 }
 
 void Stage::Update()
@@ -59,12 +60,52 @@ void Stage::Edit()
 
 		// 新しいオブジェクトを生成する
 		if (ImGui::TreeNode("CreateButtons")) {
-			if (ImGui::Button("Floor")) {
-				CreateStageObject("Floor" + std::to_string(objects_.size() + 1), "Models/Stage/Floor.fbx", this);
+			if (ImGui::TreeNode("terrain_parts")) {
+				if (ImGui::Button("terrain.fbx")) {
+					CreateStageObject("terrain" + std::to_string(objects_.size() + 1), "Models/Stage/terrain.fbx", this);
+				}
+
+				if (ImGui::Button("terrain_sideCorner.fbx")) {
+					CreateStageObject("terrain_sideCorner" + std::to_string(objects_.size() + 1), "Models/Stage/terrain_sideCorner.fbx", this);
+				}
+
+				if (ImGui::Button("terrain_side.fbx")) {
+					CreateStageObject("terrain_side" + std::to_string(objects_.size() + 1), "Models/Stage/terrain_side.fbx", this);
+				}
+
+				if (ImGui::Button("terrain_sideCornerInner.fbx")) {
+					CreateStageObject("terrain_sideCornerInner" + std::to_string(objects_.size() + 1), "Models/Stage/terrain_sideCornerInner.fbx", this);
+				}
+				ImGui::TreePop();
 			}
-			if (ImGui::Button("Wall")) {
-				CreateStageObject("Wall" + std::to_string(objects_.size() + 1), "Models/Stage/Wall.fbx", this);
+			if (ImGui::TreeNode("corridor_parts")) {
+				if (ImGui::Button("corridor.fbx")) {
+					CreateStageObject("corridor" + std::to_string(objects_.size() + 1), "Models/Stage/corridor.fbx", this);
+				}
+
+				if (ImGui::Button("corridor_corner.fbx")) {
+					CreateStageObject("corridor_corner" + std::to_string(objects_.size() + 1), "Models/Stage/corridor_corner.fbx", this);
+				}
+
+				if (ImGui::Button("corridor_cross.fbx")) {
+					CreateStageObject("corridor_cross" + std::to_string(objects_.size() + 1), "Models/Stage/corridor_cross.fbx", this);
+				}
+
+				if (ImGui::Button("corridor_detailed.fbx")) {
+					CreateStageObject("corridor_detailed" + std::to_string(objects_.size() + 1), "Models/Stage/corridor_detailed.fbx", this);
+				}
+
+				if (ImGui::Button("corridor_end.fbx")) {
+					CreateStageObject("corridor_end" + std::to_string(objects_.size() + 1), "Models/Stage/corridor_end.fbx", this);
+				}
+
+				if (ImGui::Button("corridor_open.fbx")) {
+					CreateStageObject("corridor_open" + std::to_string(objects_.size() + 1), "Models/Stage/corridor_open.fbx", this);
+				}
+
+				ImGui::TreePop();
 			}
+			
 			ImGui::TreePop();
 		}
 
@@ -91,6 +132,18 @@ void Stage::Edit()
 						ImGui::InputFloat("y", &obj->transform_.scale_.y);
 						ImGui::InputFloat("z", &obj->transform_.scale_.z);
 						ImGui::TreePop();
+					}
+
+					if (ImGui::Button("delete")) {
+						// オブジェクトを削除する
+						obj->KillMe();
+
+						// オブジェクトのイテレータを取得する
+						auto it = std::find(objects_.begin(), objects_.end(), obj);
+
+						// イテレータが見つかった場合、ベクターから削除する
+						if (it != objects_.end()) objects_.erase(it);
+						
 					}
 					ImGui::TreePop();
 				}
