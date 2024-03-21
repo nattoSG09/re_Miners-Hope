@@ -182,6 +182,9 @@
     <ClCompile Include="Game\Objects\UI\CrossHair.cpp">
       <Filter>03Game\Objects\GUI</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Objects\UI\TitleImage.cpp">
+      <Filter>03Game\Objects\GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Global.h">
@@ -314,6 +317,9 @@
       <Filter>03Game\Objects\Stage</Filter>
     </ClInclude>
     <ClInclude Include="Game\Objects\UI\CrossHair.h">
+      <Filter>03Game\Objects\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objects\UI\TitleImage.h">
       <Filter>03Game\Objects\GUI</Filter>
     </ClInclude>
   </ItemGroup>
