@@ -3,6 +3,7 @@
 class Player : public GameObject
 {
 	int hModel_;
+	int hmColide_;
 
 public:
 	Player(GameObject* parent);
@@ -14,5 +15,6 @@ public:
 private:
 	void Move(XMVECTOR dir,float speed);
 	void Walking();
+	bool IsCollide(XMVECTOR dir);
 };
 

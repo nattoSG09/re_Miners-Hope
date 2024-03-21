@@ -18,6 +18,7 @@ public:
 	void Draw() override;
 	void Release() override;
 
+	vector<StageObject*> GetStageObjects() { return objects_; }
 private:
 	void Edit();
 	bool Save(string _modelFileName);
