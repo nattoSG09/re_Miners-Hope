@@ -60,7 +60,7 @@
     <Filter Include="03Game\Objects\Enemy">
       <UniqueIdentifier>{ae117e51-9892-4e83-8837-c1748833c7c4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03Game\Objects\Coin">
+    <Filter Include="03Game\Objects\Stage\Coin">
       <UniqueIdentifier>{3c4d1808-c216-42b2-9662-02d75b9dd9a8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -194,8 +194,8 @@
     <ClCompile Include="Game\Objects\Enemy.cpp">
       <Filter>03Game\Objects\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Objects\Coin.cpp">
-      <Filter>03Game\Objects\Coin</Filter>
+    <ClCompile Include="Game\Objects\Stages\Coin.cpp">
+      <Filter>03Game\Objects\Stage\Coin</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -337,8 +337,8 @@
     <ClInclude Include="Game\Objects\Player.h">
       <Filter>03Game\Objects\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Objects\Coin.h">
-      <Filter>03Game\Objects\Coin</Filter>
+    <ClInclude Include="Game\Objects\Stages\Coin.h">
+      <Filter>03Game\Objects\Stage\Coin</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

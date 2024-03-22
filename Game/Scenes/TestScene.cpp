@@ -8,8 +8,7 @@
 #include "../../Engine/ImGui/imgui.h"
 #include "../Objects/EditorCamera.h"
 #include "../Objects/Enemy.h"
-
-
+#include "../Objects/Stages/Coin.h"
 
 
 TestScene::TestScene(GameObject * parent)
@@ -37,18 +36,18 @@ void TestScene::Initialize()
 		ec_->ON();
 	}
 
+#else
+	Enemy* e = Instantiate<Enemy>(this); {
+		e->SetPosition(30, 0, 30);
+	}
 
 #endif // _DEBUG
 
 	// スカイスフィアを配置
 	Instantiate<SkySphere>(this);
-
+	
 	// UIを配置
 	Instantiate<UIPanel>(this);
-
-	Enemy* e = Instantiate<Enemy>(this); {
-		e->SetPosition(30, 0, 30);
-	}
 }
 
 void TestScene::Update()

@@ -2,15 +2,16 @@
 #include "../../../Engine/ImGui/imgui.h"
 #include "../../../Engine/Json/JsonReader.h"
 #include "StageObject.h"
+#include "Coin.h"
 
 Stage::Stage(GameObject* parent, string _modelFileName)
-	:GameObject(parent, "Stage"),modelFileName_(_modelFileName)
+	:GameObject(parent, "Stage"),stageFilePath_(_modelFileName)
 {
 }
 
 void Stage::Initialize()
 {
-	Load(modelFileName_);
+	Load(stageFilePath_);
 	transform_.scale_ = { 2.f,2.f,2.f };
 }
 
@@ -38,12 +39,12 @@ void Stage::Edit()
 			{
 				// セーブする
 				if (ImGui::MenuItem("Save")) {
-					Save(modelFileName_);
+					Save(stageFilePath_);
 				}
 
 				// ロードする
 				if (ImGui::MenuItem("Load")) {
-					Load(modelFileName_);
+					Load(stageFilePath_);
 				}
 
 				// 削除を行う
@@ -171,14 +172,59 @@ void Stage::Edit()
 
 						// イテレータが見つかった場合、ベクターから削除する
 						if (it != objects_.end()) objects_.erase(it);
-						
+
 					}
 					ImGui::TreePop();
 				}
 			}
 			ImGui::TreePop();
 		}
-	}ImGui::End();
+
+		if (ImGui::Button("Coin")) {
+			CreateCoin(this);
+		}
+		if (ImGui::TreeNode("CoinList")) {
+			for (auto c : coins_) {
+				if (ImGui::TreeNode(c->objectName_.c_str())) {
+					if (ImGui::TreeNode("position_")) {
+						ImGui::InputFloat("x", &c->transform_.position_.x);
+						ImGui::InputFloat("y", &c->transform_.position_.y);
+						ImGui::InputFloat("z", &c->transform_.position_.z);
+						ImGui::TreePop();
+					}
+
+					if (ImGui::TreeNode("rotate_")) {
+						ImGui::InputFloat("x", &c->transform_.rotate_.x);
+						ImGui::InputFloat("y", &c->transform_.rotate_.y);
+						ImGui::InputFloat("z", &c->transform_.rotate_.z);
+						ImGui::TreePop();
+					}
+
+					if (ImGui::TreeNode("scale_")) {
+						ImGui::InputFloat("x", &c->transform_.scale_.x);
+						ImGui::InputFloat("y", &c->transform_.scale_.y);
+						ImGui::InputFloat("z", &c->transform_.scale_.z);
+						ImGui::TreePop();
+					}
+
+					if (ImGui::Button("delete")) {
+						// オブジェクトを削除する
+						c->KillMe();
+
+						// オブジェクトのイテレータを取得する
+						auto it = std::find(coins_.begin(), coins_.end(), c);
+
+						// イテレータが見つかった場合、ベクターから削除する
+						if (it != coins_.end()) coins_.erase(it);
+
+					}
+					ImGui::TreePop();
+				}
+			}
+			ImGui::TreePop();
+
+		}ImGui::End();
+	}
 }
 
 bool Stage::Save(string _modelFileName)
@@ -204,7 +250,23 @@ bool Stage::Save(string _modelFileName)
 	}
 
 	// セーブする
-	return JsonReader::Save(_modelFileName, saveData);
+	if(JsonReader::Save(_modelFileName, saveData) == false)return false;
+
+	json coinData; {
+		for (auto coin : coins_) {
+			saveData[coin->objectName_]["position_"]["x"] = coin->transform_.position_.x;
+			saveData[coin->objectName_]["position_"]["y"] = coin->transform_.position_.y;
+			saveData[coin->objectName_]["position_"]["z"] = coin->transform_.position_.z;
+
+			saveData[coin->objectName_]["rotate_"]["x"] = coin->transform_.rotate_.x;
+			saveData[coin->objectName_]["rotate_"]["y"] = coin->transform_.rotate_.y;
+			saveData[coin->objectName_]["rotate_"]["z"] = coin->transform_.rotate_.z;
+
+			saveData[coin->objectName_]["scale_"]["x"] = coin->transform_.scale_.x;
+			saveData[coin->objectName_]["scale_"]["y"] = coin->transform_.scale_.y;
+			saveData[coin->objectName_]["scale_"]["z"] = coin->transform_.scale_.z;
+		}
+	}
 }
 
 bool Stage::Load(string _modelFileName)
@@ -249,7 +311,7 @@ bool Stage::Load(string _modelFileName)
 			obj->transform_.scale_.z = data["scale_"]["z"];
 		}
 	}
-
+	
 	return true;
 }
 
@@ -260,6 +322,15 @@ StageObject* Stage::CreateStageObject(string _name, string _modelFilePath, GameO
 	if (_parent != nullptr)_parent->PushBackChild(obj);
 	objects_.push_back(obj);
 	return obj;
+}
+
+Coin* Stage::CreateCoin(GameObject* parent)
+{
+	Coin* coin = new Coin(parent,"Coin" + std::to_string(coins_.size()));
+	coin->Initialize();
+	if (parent != nullptr)parent->PushBackChild(coin);
+	coins_.push_back(coin);
+	return coin;
 }
 
 Stage* CreateStage(string _modelFilePath, GameObject* parent)
