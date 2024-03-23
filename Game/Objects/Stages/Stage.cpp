@@ -53,6 +53,11 @@ void Stage::Edit()
 						obj->KillMe();
 					}
 					objects_.clear();
+
+					for (auto coin : coins_) {
+						coin->KillMe();
+					}
+					coins_.clear();
 				}
 				ImGui::EndMenu();
 			}
@@ -254,19 +259,23 @@ bool Stage::Save(string _modelFileName)
 
 	json coinData; {
 		for (auto coin : coins_) {
-			saveData[coin->objectName_]["position_"]["x"] = coin->transform_.position_.x;
-			saveData[coin->objectName_]["position_"]["y"] = coin->transform_.position_.y;
-			saveData[coin->objectName_]["position_"]["z"] = coin->transform_.position_.z;
+			coinData[coin->objectName_]["position_"]["x"] = coin->transform_.position_.x;
+			coinData[coin->objectName_]["position_"]["y"] = coin->transform_.position_.y;
+			coinData[coin->objectName_]["position_"]["z"] = coin->transform_.position_.z;
 
-			saveData[coin->objectName_]["rotate_"]["x"] = coin->transform_.rotate_.x;
-			saveData[coin->objectName_]["rotate_"]["y"] = coin->transform_.rotate_.y;
-			saveData[coin->objectName_]["rotate_"]["z"] = coin->transform_.rotate_.z;
+			coinData[coin->objectName_]["rotate_"]["x"] = coin->transform_.rotate_.x;
+			coinData[coin->objectName_]["rotate_"]["y"] = coin->transform_.rotate_.y;
+			coinData[coin->objectName_]["rotate_"]["z"] = coin->transform_.rotate_.z;
 
-			saveData[coin->objectName_]["scale_"]["x"] = coin->transform_.scale_.x;
-			saveData[coin->objectName_]["scale_"]["y"] = coin->transform_.scale_.y;
-			saveData[coin->objectName_]["scale_"]["z"] = coin->transform_.scale_.z;
+			coinData[coin->objectName_]["scale_"]["x"] = coin->transform_.scale_.x;
+			coinData[coin->objectName_]["scale_"]["y"] = coin->transform_.scale_.y;
+			coinData[coin->objectName_]["scale_"]["z"] = coin->transform_.scale_.z;
 		}
 	}
+
+	if (JsonReader::Save("Data/CoinObjects.json", coinData) == false)return false;
+
+	return true;
 }
 
 bool Stage::Load(string _modelFileName)
@@ -312,6 +321,34 @@ bool Stage::Load(string _modelFileName)
 		}
 	}
 	
+	// ロードする
+	json coinData;
+	if (JsonReader::Load("Data/CoinObjects.json", coinData) == false)return false;
+
+	for (auto it = coinData.begin(); it != coinData.end(); ++it) {
+
+		// ロードしたデータから位置、回転、スケールを復元する
+		auto & data = it.value();
+
+		Coin* coin = CreateCoin(this);
+
+		if (data.contains("position_")) {
+			coin->transform_.position_.x = data["position_"]["x"];
+			coin->transform_.position_.y = data["position_"]["y"];
+			coin->transform_.position_.z = data["position_"]["z"];
+		}
+		if (data.contains("rotate_")) {
+			coin->transform_.rotate_.x = data["rotate_"]["x"];
+			coin->transform_.rotate_.y = data["rotate_"]["y"];
+			coin->transform_.rotate_.z = data["rotate_"]["z"];
+		}
+		if (data.contains("scale_")) {
+			coin->transform_.scale_.x = data["scale_"]["x"];
+			coin->transform_.scale_.y = data["scale_"]["y"];
+			coin->transform_.scale_.z = data["scale_"]["z"];
+		}
+	}
+
 	return true;
 }
 
