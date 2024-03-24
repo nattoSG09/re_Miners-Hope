@@ -19,7 +19,7 @@ void Coin::Initialize()
 void Coin::Update()
 {
 	myCircle_.center_ = { transform_.position_.x ,transform_.position_.z};
-	myCircle_.radius_ = 1.f;
+	myCircle_.radius_ = 1.2f;
 
 	transform_.rotate_.y += 0.5f;
 

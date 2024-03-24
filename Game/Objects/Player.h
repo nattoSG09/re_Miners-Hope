@@ -5,6 +5,11 @@ class Player : public GameObject
 	int hModel_;
 	int hmColide_;
 	bool isDead_;
+	int myCoinNum_;
+	bool isDash_;
+	int ha_getCoin_;
+	int ha_footstep_;
+	int ha_gameOver_;
 public:
 	Player(GameObject* parent);
 	void Initialize() override;
@@ -14,7 +19,9 @@ public:
 	void OnCollision(GameObject* target) override;
 
 	bool IsDead() { return isDead_ == true; }
+	bool IsDash() { return isDash_ == true; }
 	void CoinsHitChack();
+	int GetCoinNum() { return myCoinNum_; }
 private:
 	void Move(XMVECTOR dir,float speed);
 	void Walking();

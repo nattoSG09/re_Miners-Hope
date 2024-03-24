@@ -9,6 +9,7 @@
 #include "../Objects/EditorCamera.h"
 #include "../Objects/Enemy.h"
 #include "../Objects/Stages/Coin.h"
+#include "../../Engine/ResourceManager/Audio.h"
 
 
 TestScene::TestScene(GameObject * parent)
@@ -41,6 +42,9 @@ void TestScene::Initialize()
 	}
 
 #else
+	ha_music = Audio::Load("Audio/Retro-Comedy.wav",true);
+	Audio::Play(ha_music);
+
 	Enemy* e = Instantiate<Enemy>(this); {
 		e->SetPosition(30, 0, 30);
 	}
@@ -50,8 +54,6 @@ void TestScene::Initialize()
 
 #endif // _DEBUG
 
-	
-	
 }
 
 void TestScene::Update()

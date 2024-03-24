@@ -7,6 +7,7 @@ class EditorCamera;
 
 class TestScene : public GameObject
 {
+	int ha_music;
 	Player* pPlayer_;
 	TPSCamera* pCamera_;
 	EditorCamera* ec_;

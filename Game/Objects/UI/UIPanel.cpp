@@ -15,7 +15,8 @@ void UIPanel::Initialize()
 
 	hp_dispQuestText = Image::Load("Images/dispQuestText.png");
 	hp_youDead = Image::Load("Images/youDead.png");
-
+	hp_concentrationline = Image::Load("Images/concentrationline.png");
+	hp_gameClear = Image::Load("Images/gameClear.png");
 	pText_ = new Text;
 	pText_->Initialize();
 }
@@ -28,6 +29,14 @@ void UIPanel::Draw()
 {
 	Player* p = (Player*)FindObject("Player");
 	if (p == nullptr)return;
+
+	if (p->GetCoinNum() == 10) {
+		Transform t;
+		t.scale_ = { 0.7f,0.7f ,0.7f };
+		Image::SetTransform(hp_gameClear, t);
+		Image::Draw(hp_gameClear);
+		return;
+	}
 
 	if (p->IsDead()) {
 		// 「YOU DEAD」というテキストを表示する
@@ -45,13 +54,18 @@ void UIPanel::Draw()
 		Image::Draw(hp_dispQuestText);
 
 		pText_->SetScale(2.f);
-		pText_->Draw(400, 400, 1);
-	}
+		pText_->Draw(1100, 600, p->GetCoinNum());
+		pText_->Draw(1150, 600, "/");
+		pText_->Draw(1200, 600, 10);
 
-	
+		if (p->IsDash()) {
+			Transform t_concentrationline;
+			Image::SetTransform(hp_concentrationline, t_concentrationline);
+			Image::Draw(hp_concentrationline);
+		}
+	}
 }
 
 void UIPanel::Release()
 {
-	pText_->Release();
 }

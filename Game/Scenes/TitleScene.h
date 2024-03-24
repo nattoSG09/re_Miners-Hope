@@ -3,6 +3,8 @@
 
 class TitleScene : public GameObject
 {
+	int ha_Start;
+	int ha_music;
 public:
 	TitleScene(GameObject* parent);
 	void Initialize() override;

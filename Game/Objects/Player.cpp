@@ -14,6 +14,7 @@
 #include "Enemy.h"
 #include "../Objects/Stages/Coin.h"
 #include "../../Engine/SceneManager.h"
+#include "../../Engine/ResourceManager/Audio.h"
 
 Player::Player(GameObject* parent)
 	:GameObject(parent,"Player"),hModel_(-1)
@@ -26,13 +27,24 @@ void Player::Initialize()
 	hmColide_ = Model::Load("DebugCollision/BoxCollider.fbx");
 	assert(0 <= hModel_);
 	AddCollider(new BoxCollider(XMFLOAT3(0, 2, 0), XMFLOAT3(1, 4, 1)));
+
+	ha_getCoin_ = Audio::Load("Audio/phaseJump3.wav");
+	ha_footstep_ = Audio::Load("Audio/footstep09.wav");
+	ha_gameOver_ = Audio::Load("Audio/gameover4.wav");
+	Audio::SetPlaybackRate(ha_footstep_, 0.3f);
+	Audio::SetVolume(ha_footstep_, 0.3f);
 }
 
 void Player::Update()
 {
 
-	if (isDead_) {
-		static int time = 0;
+	static bool gameoverPlay = false;
+	static int time = 0;
+	if (isDead_ || myCoinNum_ == 10) {
+		if (isDead_ && gameoverPlay == false) {
+			Audio::Play(ha_gameOver_);
+			gameoverPlay = true;
+		}
 		if (time >= 2 * 60) {
 			SceneManager* sm = (SceneManager*)FindObject("SceneManager");
 			sm->ChangeScene(SCENE_ID_TITLE, TID_WHITEOUT);
@@ -42,6 +54,7 @@ void Player::Update()
 	else {
 		Walking();
 		CoinsHitChack();
+		time = 0;
 	}
 }
 
@@ -60,8 +73,10 @@ void Player::CoinsHitChack()
 	Stage* s = (Stage*)FindObject("Stage");
 	for (auto c : s->GetStageCoins()) {
 		if (c->GetCircle().ContainsPoint(transform_.position_.x, transform_.position_.z) == true) {
+			Audio::Play(ha_getCoin_);
 			c->DeadEfect();
 			s->DeleteCoin(c);
+			myCoinNum_++;
 		}
 	}
 }
@@ -111,12 +126,21 @@ void Player::Walking()
 			dir = XMVector3Normalize(dir);
 		}
 
+		isDash_ = false;
 		// 速度を設定
 		float speed = 0.1f;
-		if (Input::IsKey(DIK_LSHIFT))speed *= 2.f;
+		if (Input::IsKey(DIK_LSHIFT)) {
+			speed *= 2.f;
+			isDash_ = true;
+		}
 
 		// 移動
 		Move(dir, speed);
+
+		if(Input::IsKey(DIK_W)|| Input::IsKey(DIK_A)|| Input::IsKey(DIK_S)|| Input::IsKey(DIK_D))
+			Audio::Play(ha_footstep_);
+
+
 	}
 
 	// アニメーションを行う
@@ -199,7 +223,6 @@ void Player::OnCollision(GameObject* target)
 	if (target->GetObjectName() == "Enemy") {
 		isDead_ = true;
 		Model::SetAnimFrame(hModel_, 0, 0, 0);
-
 		// Effectを出す
 		{
 			EmitterData data;
