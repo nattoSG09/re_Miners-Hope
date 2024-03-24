@@ -144,8 +144,11 @@ void Player::Walking()
 		// ˆÚ“®
 		Move(dir, speed);
 
+#ifdef _DEBUG
+#else
 		if(Input::IsKey(DIK_W)|| Input::IsKey(DIK_A)|| Input::IsKey(DIK_S)|| Input::IsKey(DIK_D))
 			Audio::Play(ha_footstep_);
+#endif // _DEBUG
 
 
 	}

@@ -8,6 +8,7 @@ class UIPanel : public GameObject
 	int hp_youDead;
 	int hp_concentrationline;
 	int hp_gameClear;
+	int hp_key;
 
 	Text* pText_;
 public:

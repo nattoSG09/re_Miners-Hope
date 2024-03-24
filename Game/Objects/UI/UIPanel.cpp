@@ -17,6 +17,7 @@ void UIPanel::Initialize()
 	hp_youDead = Image::Load("Images/youDead.png");
 	hp_concentrationline = Image::Load("Images/concentrationline.png");
 	hp_gameClear = Image::Load("Images/gameClear.png");
+	hp_key = Image::Load("Images/key.png");
 	pText_ = new Text;
 	pText_->Initialize();
 }
@@ -57,6 +58,11 @@ void UIPanel::Draw()
 		pText_->Draw(1100, 600, p->GetCoinNum());
 		pText_->Draw(1150, 600, "/");
 		pText_->Draw(1200, 600, 10);
+
+		Transform t_key;
+		t_key.scale_ = { 0.6f,0.6f, 0.6f };
+		Image::SetTransform(hp_key,t_key);
+		Image::Draw(hp_key);
 
 		if (p->IsDash()) {
 			Transform t_concentrationline;
