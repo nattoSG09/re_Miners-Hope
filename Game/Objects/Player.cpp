@@ -1,14 +1,19 @@
 #include "Player.h"
+
 #include "../../Engine/ResourceManager/Model.h"
 #include "../../Engine/DirectX/Input.h"
 #include "../../Engine/ImGui/imgui.h"
 #include "../../Engine/GameObject/Camera.h"
-#include "TPSCamera.h"
 #include "../../Engine/DirectX/Direct3D.h"
+#include "../../Engine/ResourceManager/VFX.h"
+#include "../../Engine/Collider/BoxCollider.h"
+
 #include "Stages/Stage.h"
 #include "Stages/StageObject.h"
+#include "TPSCamera.h"
 #include "Enemy.h"
-#include "../../Engine/ResourceManager/VFX.h"
+#include "../Objects/Stages/Coin.h"
+#include "../../Engine/SceneManager.h"
 
 Player::Player(GameObject* parent)
 	:GameObject(parent,"Player"),hModel_(-1)
@@ -20,31 +25,45 @@ void Player::Initialize()
 	hModel_ = Model::Load("Models/Player/Walking.fbx");
 	hmColide_ = Model::Load("DebugCollision/BoxCollider.fbx");
 	assert(0 <= hModel_);
+	AddCollider(new BoxCollider(XMFLOAT3(0, 2, 0), XMFLOAT3(1, 4, 1)));
 }
 
 void Player::Update()
 {
-	Walking();
 
-	//if(Input::IsMouseButton(0))EnemyAttack();
+	if (isDead_) {
+		static int time = 0;
+		if (time >= 2 * 60) {
+			SceneManager* sm = (SceneManager*)FindObject("SceneManager");
+			sm->ChangeScene(SCENE_ID_TITLE, TID_WHITEOUT);
+		}
+		time++;
+	}
+	else {
+		Walking();
+		CoinsHitChack();
+	}
 }
 
 void Player::Draw()
 {
 	Model::SetTransform(hModel_, transform_);
 	Model::Draw(hModel_);
-
-	Transform t = transform_;
-	t.scale_ = { 1.5f,3.f,1.5f };
-	Direct3D::SetShader(Direct3D::SHADER_UNLIT);
-	Model::SetTransform(hmColide_, t);
-	Model::Draw(hmColide_);
-	Direct3D::SetShader(Direct3D::SHADER_3D);
-
 }
 
 void Player::Release()
 {
+}
+
+void Player::CoinsHitChack()
+{
+	Stage* s = (Stage*)FindObject("Stage");
+	for (auto c : s->GetStageCoins()) {
+		if (c->GetCircle().ContainsPoint(transform_.position_.x, transform_.position_.z) == true) {
+			c->DeadEfect();
+			s->DeleteCoin(c);
+		}
+	}
 }
 
 void Player::Move(XMVECTOR dir, float speed)
@@ -112,42 +131,6 @@ void Player::Walking()
 	}
 }
 
-bool Player::IsCollide(XMVECTOR dir)
-{
-	// –¢Š®¬...ŒŸØ’†
-
-	RayCastData rayToColide; {
-		rayToColide.start = transform_.position_;	// ”­ËˆÊ’u‚ğİ’è
-		rayToColide.start.y += 1.5f;
-		XMStoreFloat3(&rayToColide.dir, dir);		// ”­Ë•ûŒü‚ğİ’è
-	}
-	Model::RayCast(hmColide_, &rayToColide);
-
-	RayCastData rayToPorigon; {
-		rayToPorigon.start = transform_.position_;	// ”­ËˆÊ’u‚ğİ’è
-		rayToPorigon.start.y+=1.5f;
-		XMStoreFloat3(&rayToColide.dir, dir);		// ”­Ë•ûŒü‚ğİ’è
-	}
-
-	vector<StageObject*> objects = ((Stage*)FindObject("Stage"))->GetStageObjects();
-	for (auto& obj : objects) {
-		Model::RayCast(obj->GetModelHandle(), &rayToPorigon);
-
-		if (rayToPorigon.hit == true && rayToColide.hit == true) {
-			
-			if (rayToPorigon.dist < rayToColide.dist) {
-				ImGui::Text(obj->GetObjectName().c_str());
-				ImGui::Text("C dist = %f", rayToColide.dist);
-				ImGui::Text("P dist = %f", rayToPorigon.dist);
-				ImGui::Text("hit now!!");
-				return true;
-			}
-		}
-	}
-	
-	return false;
-}
-
 void Player::EnemyAttack()
 {
 	// –¢Š®¬...ŒŸØ’†
@@ -173,7 +156,6 @@ void Player::EnemyAttack()
 			data.textureFileName = "Images/cloudA.png";
 
 			data.position = sightRay.pos;
-			ImGui::Text("pos = %f,%f,%f", data.position.x, data.position.y, data.position.z);
 			data.delay = 0;
 			data.number = 80;
 			data.lifeTime = 30;
@@ -209,5 +191,54 @@ void Player::EnemyAttack()
 
 		// UŒ‚‚·‚é
 		//e->SetHP(pEnemy_->GetHP() - 20);
+	}
+}
+
+void Player::OnCollision(GameObject* target)
+{
+	if (target->GetObjectName() == "Enemy") {
+		isDead_ = true;
+		Model::SetAnimFrame(hModel_, 0, 0, 0);
+
+		// Effect‚ğo‚·
+		{
+			EmitterData data;
+
+			//‰Š
+			data.textureFileName = "Images/cloudA.png";
+
+			data.position = transform_.position_;
+			data.delay = 0;
+			data.number = 80;
+			data.lifeTime = 30;
+			data.direction = XMFLOAT3(0, 1, 0);
+			data.directionRnd = XMFLOAT3(90, 90, 90);
+			data.speed = 0.1f;
+			data.speedRnd = 0.8;
+			data.size = XMFLOAT2(1.2, 1.2);
+			data.sizeRnd = XMFLOAT2(0.4, 0.4);
+			data.scale = XMFLOAT2(1.05, 1.05);
+			data.color = XMFLOAT4(0.5, 0.5, 0.1, 1);
+			data.deltaColor = XMFLOAT4(0, -1.0 / 20, 0, -1.0 / 20);
+			VFX::Start(data);
+
+			//‰Î‚Ì•²
+			data.delay = 0;
+			data.number = 80;
+			data.lifeTime = 100;
+			data.positionRnd = XMFLOAT3(0.5, 0, 0.5);
+			data.direction = XMFLOAT3(0, 1, 0);
+			data.directionRnd = XMFLOAT3(90, 90, 90);
+			data.speed = 0.25f;
+			data.speedRnd = 1;
+			data.accel = 0.93;
+			data.size = XMFLOAT2(0.1, 0.1);
+			data.sizeRnd = XMFLOAT2(0.4, 0.4);
+			data.scale = XMFLOAT2(0.99, 0.99);
+			data.color = XMFLOAT4(0.4, 0.2, 0.0, 1);
+			data.deltaColor = XMFLOAT4(0, 0, 0, 0);
+			data.gravity = 0.003f;
+			VFX::Start(data);
+		}
 	}
 }

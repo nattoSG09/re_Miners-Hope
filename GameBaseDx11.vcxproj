@@ -161,6 +161,8 @@
     <ClCompile Include="Engine\Json\JsonReader.cpp" />
     <ClCompile Include="Engine\Transition.cpp" />
     <ClCompile Include="Game\Objects\UI\TitleImage.cpp" />
+    <ClCompile Include="Game\Others\Circle.cpp" />
+    <ClCompile Include="Game\Others\Rect.cpp" />
     <ClCompile Include="Game\Scenes\TestScene.cpp" />
     <ClCompile Include="Game\Scenes\TitleScene.cpp" />
     <ClCompile Include="Game\Objects\Player.cpp" />
@@ -210,6 +212,8 @@
     <ClInclude Include="Engine\Json\JsonReader.h" />
     <ClInclude Include="Engine\Transition.h" />
     <ClInclude Include="Game\Objects\UI\TitleImage.h" />
+    <ClInclude Include="Game\Others\Circle.h" />
+    <ClInclude Include="Game\Others\Rect.h" />
     <ClInclude Include="Game\Scenes\TestScene.h" />
     <ClInclude Include="Game\Scenes\TitleScene.h" />
     <ClInclude Include="Game\Objects\Player.h" />

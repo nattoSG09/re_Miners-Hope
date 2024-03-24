@@ -63,6 +63,9 @@
     <Filter Include="03Game\Objects\Stage\Coin">
       <UniqueIdentifier>{3c4d1808-c216-42b2-9662-02d75b9dd9a8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03Game\Others">
+      <UniqueIdentifier>{494e5313-31f9-4d63-a834-bceee20421b4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Main.cpp">
@@ -196,6 +199,12 @@
     </ClCompile>
     <ClCompile Include="Game\Objects\Stages\Coin.cpp">
       <Filter>03Game\Objects\Stage\Coin</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Others\Circle.cpp">
+      <Filter>03Game\Others</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Others\Rect.cpp">
+      <Filter>03Game\Others</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -339,6 +348,12 @@
     </ClInclude>
     <ClInclude Include="Game\Objects\Stages\Coin.h">
       <Filter>03Game\Objects\Stage\Coin</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Others\Circle.h">
+      <Filter>03Game\Others</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Others\Rect.h">
+      <Filter>03Game\Others</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

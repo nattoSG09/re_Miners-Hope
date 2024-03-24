@@ -12,7 +12,7 @@ Stage::Stage(GameObject* parent, string _modelFileName)
 void Stage::Initialize()
 {
 	Load(stageFilePath_);
-	transform_.scale_ = { 2.f,2.f,2.f };
+	//transform_.scale_ = { 2.f,2.f,2.f };
 }
 
 void Stage::Update()
@@ -29,6 +29,31 @@ void Stage::Draw()
 
 void Stage::Release()
 {
+}
+
+void Stage::DeleteCoin(Coin* c)
+{
+	// オブジェクトを削除する
+	c->KillMe();
+
+	// オブジェクトのイテレータを取得する
+	auto it = std::find(coins_.begin(), coins_.end(), c);
+
+	// イテレータが見つかった場合、ベクターから削除する
+	if (it != coins_.end()) coins_.erase(it);
+}
+
+void Stage::DeleteObject(StageObject* obj)
+{
+	// オブジェクトを削除する
+	obj->KillMe();
+
+	// オブジェクトのイテレータを取得する
+	auto it = std::find(objects_.begin(), objects_.end(), obj);
+
+	// イテレータが見つかった場合、ベクターから削除する
+	if (it != objects_.end()) objects_.erase(it);
+
 }
 
 void Stage::Edit()
@@ -169,14 +194,7 @@ void Stage::Edit()
 					}
 
 					if (ImGui::Button("delete")) {
-						// オブジェクトを削除する
-						obj->KillMe();
-
-						// オブジェクトのイテレータを取得する
-						auto it = std::find(objects_.begin(), objects_.end(), obj);
-
-						// イテレータが見つかった場合、ベクターから削除する
-						if (it != objects_.end()) objects_.erase(it);
+						DeleteObject(obj);
 
 					}
 					ImGui::TreePop();
@@ -213,15 +231,7 @@ void Stage::Edit()
 					}
 
 					if (ImGui::Button("delete")) {
-						// オブジェクトを削除する
-						c->KillMe();
-
-						// オブジェクトのイテレータを取得する
-						auto it = std::find(coins_.begin(), coins_.end(), c);
-
-						// イテレータが見つかった場合、ベクターから削除する
-						if (it != coins_.end()) coins_.erase(it);
-
+						DeleteCoin(c);
 					}
 					ImGui::TreePop();
 				}

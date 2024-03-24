@@ -21,6 +21,11 @@ public:
 	void Release() override;
 
 	vector<StageObject*> GetStageObjects() { return objects_; }
+	vector<Coin*> GetStageCoins() { return coins_; }
+	void SetStageCoins(vector<Coin*> _coins) { coins_ = _coins; }
+
+	void DeleteCoin(Coin* c);
+	void DeleteObject(StageObject* obj);
 private:
 	void Edit();
 	bool Save(string _modelFileName);

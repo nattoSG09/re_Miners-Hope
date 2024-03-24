@@ -1,5 +1,5 @@
 #pragma once
-#include "../DirectX/Input.h"
+#include "Image.h"
 
 class Text
 {
@@ -38,5 +38,9 @@ public:
 
 	//‰ð•ú
 	void Release();
+
+	void SetScale(float sc) { scale = sc; }
+private:
+	float scale;
 };
 

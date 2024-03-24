@@ -1,6 +1,7 @@
 #include "Enemy.h"
 #include "../../Engine/ResourceManager/Model.h"
 #include "Player.h"
+#include "../../Engine/Collider/BoxCollider.h"
 
 Enemy::Enemy(GameObject* parent)
 	:GameObject(parent,"Enemy")
@@ -10,7 +11,9 @@ Enemy::Enemy(GameObject* parent)
 void Enemy::Initialize()
 {
 	hModel_ = Model::Load("Models/Enemy/Walking.fbx");
-	//Model::SetAnimFrame(hModel_, 0, 82, 1);
+	Model::SetAnimFrame(hModel_, 0, 82, 1);
+
+	AddCollider(new BoxCollider(XMFLOAT3(0, 3, 0), XMFLOAT3(2, 3, 2)));
 }
 
 void Enemy::Update()

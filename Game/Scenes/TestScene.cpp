@@ -20,7 +20,7 @@ void TestScene::Initialize()
 {
 
 	// ステージを制作
-	CreateStage("Data/stageObjects.json", this);
+	CreateStage("Data/stageObjects2.json", this);
 
 	// プレイヤーを配置
 	pPlayer_ = Instantiate<Player>(this); 
@@ -30,6 +30,10 @@ void TestScene::Initialize()
 		// プレイヤーに焦点を合わせる
 		pCamera_->SetTarget(pPlayer_);
 	}
+
+	// スカイスフィアを配置
+	Instantiate<SkySphere>(this);
+
 #ifdef _DEBUG
 
 	ec_ = Instantiate<EditorCamera>(this); {
@@ -41,13 +45,13 @@ void TestScene::Initialize()
 		e->SetPosition(30, 0, 30);
 	}
 
-#endif // _DEBUG
-
-	// スカイスフィアを配置
-	Instantiate<SkySphere>(this);
-	
 	// UIを配置
 	Instantiate<UIPanel>(this);
+
+#endif // _DEBUG
+
+	
+	
 }
 
 void TestScene::Update()
