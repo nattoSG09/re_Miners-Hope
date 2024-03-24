@@ -31,6 +31,7 @@ void Player::Initialize()
 	ha_getCoin_ = Audio::Load("Audio/phaseJump3.wav");
 	ha_footstep_ = Audio::Load("Audio/footstep09.wav");
 	ha_gameOver_ = Audio::Load("Audio/gameover4.wav");
+	ha_gameClear_ = Audio::Load("Audio/confirmation_002.wav");
 	Audio::SetPlaybackRate(ha_footstep_, 0.3f);
 	Audio::SetVolume(ha_footstep_, 0.3f);
 }
@@ -45,6 +46,12 @@ void Player::Update()
 			Audio::Play(ha_gameOver_);
 			gameoverPlay = true;
 		}
+
+		if (gameoverPlay == false) {
+			Audio::Play(ha_gameClear_);
+			gameoverPlay = true;
+		}
+
 		if (time >= 2 * 60) {
 			SceneManager* sm = (SceneManager*)FindObject("SceneManager");
 			sm->ChangeScene(SCENE_ID_TITLE, TID_WHITEOUT);

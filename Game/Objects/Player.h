@@ -10,6 +10,7 @@ class Player : public GameObject
 	int ha_getCoin_;
 	int ha_footstep_;
 	int ha_gameOver_;
+	int ha_gameClear_;
 public:
 	Player(GameObject* parent);
 	void Initialize() override;
