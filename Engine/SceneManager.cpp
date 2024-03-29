@@ -2,7 +2,6 @@
 
 //シーンオブジェクト
 #include "../Game/Scenes/TestScene.h"
-#include "../Game/Scenes/TitleScene.h"
 
 #include "ResourceManager/Model.h"
 #include "ResourceManager/Image.h"
@@ -19,15 +18,9 @@ SceneManager::SceneManager(GameObject * parent)
 void SceneManager::Initialize()
 {
 	//最初のシーンを準備
-#ifdef _DEBUG
 	currentSceneID_ = SCENE_ID_TEST;
 	nextSceneID_ = currentSceneID_;
 	Instantiate<TestScene>(this);
-#else
-	currentSceneID_ = SCENE_ID_TITLE;
-	nextSceneID_ = currentSceneID_;
-	Instantiate<TitleScene>(this);
-#endif // _DEBUG
 
 }
 
@@ -51,7 +44,6 @@ void SceneManager::Update()
 		//次のシーンを作成
 		switch (nextSceneID_)
 		{
-		case SCENE_ID_TITLE: Instantiate<TitleScene>(this); break;
 		case SCENE_ID_TEST: Instantiate<TestScene>(this); break;
 		}
 

@@ -36,35 +36,11 @@
     <Filter Include="03Game\Scenes">
       <UniqueIdentifier>{fd78e0a3-3bb5-47e0-beb2-a9b874f3016b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03Game\Scenes\TitleScene">
-      <UniqueIdentifier>{12422b82-424e-4267-87fd-7df5b21c6905}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03Game\Scenes\TestScene">
       <UniqueIdentifier>{a1006bea-ac8d-4a4b-bb8e-58ae434ddf6c}</UniqueIdentifier>
     </Filter>
     <Filter Include="03Game\Objects">
-      <UniqueIdentifier>{82f82f48-0e37-4f93-8904-6ba7a21778e8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03Game\Objects\Player">
-      <UniqueIdentifier>{a083c9f6-5a3a-4ba8-9270-a2551c27fe5e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03Game\Objects\Stage">
-      <UniqueIdentifier>{ce7d77be-f524-434d-bb88-51cb9fae7610}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03Game\Objects\GUI">
-      <UniqueIdentifier>{212346b5-5035-4947-bc30-0cc222b2d359}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03Game\Objects\Camera">
-      <UniqueIdentifier>{a090a9ff-6f99-4594-a215-bc151e71a72b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03Game\Objects\Enemy">
-      <UniqueIdentifier>{ae117e51-9892-4e83-8837-c1748833c7c4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03Game\Objects\Stage\Coin">
-      <UniqueIdentifier>{3c4d1808-c216-42b2-9662-02d75b9dd9a8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03Game\Others">
-      <UniqueIdentifier>{494e5313-31f9-4d63-a834-bceee20421b4}</UniqueIdentifier>
+      <UniqueIdentifier>{381a54ab-66a4-4970-939b-934eb381a063}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -161,50 +137,8 @@
     <ClCompile Include="Engine\Json\JsonReader.cpp">
       <Filter>01Engine\Json</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Scenes\TitleScene.cpp">
-      <Filter>03Game\Scenes\TitleScene</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Scenes\TestScene.cpp">
       <Filter>03Game\Scenes\TestScene</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Objects\Player.cpp">
-      <Filter>03Game\Objects\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Objects\Stages\Stage.cpp">
-      <Filter>03Game\Objects\Stage</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Objects\Stages\StageObject.cpp">
-      <Filter>03Game\Objects\Stage</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Objects\UI\UIPanel.cpp">
-      <Filter>03Game\Objects\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Objects\EditorCamera.cpp">
-      <Filter>03Game\Objects\Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Objects\TPSCamera.cpp">
-      <Filter>03Game\Objects\Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Objects\SkySphere.cpp">
-      <Filter>03Game\Objects\Stage</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Objects\UI\CrossHair.cpp">
-      <Filter>03Game\Objects\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Objects\UI\TitleImage.cpp">
-      <Filter>03Game\Objects\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Objects\Enemy.cpp">
-      <Filter>03Game\Objects\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Objects\Stages\Coin.cpp">
-      <Filter>03Game\Objects\Stage\Coin</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Others\Circle.cpp">
-      <Filter>03Game\Others</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Others\Rect.cpp">
-      <Filter>03Game\Others</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -310,50 +244,8 @@
     <ClInclude Include="Engine\Json\JsonReader.h">
       <Filter>01Engine\Json</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Scenes\TitleScene.h">
-      <Filter>03Game\Scenes\TitleScene</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Scenes\TestScene.h">
       <Filter>03Game\Scenes\TestScene</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Objects\Stages\Stage.h">
-      <Filter>03Game\Objects\Stage</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Objects\Stages\StageObject.h">
-      <Filter>03Game\Objects\Stage</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Objects\UI\UIPanel.h">
-      <Filter>03Game\Objects\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Objects\EditorCamera.h">
-      <Filter>03Game\Objects\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Objects\TPSCamera.h">
-      <Filter>03Game\Objects\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Objects\SkySphere.h">
-      <Filter>03Game\Objects\Stage</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Objects\UI\CrossHair.h">
-      <Filter>03Game\Objects\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Objects\UI\TitleImage.h">
-      <Filter>03Game\Objects\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Objects\Enemy.h">
-      <Filter>03Game\Objects\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Objects\Player.h">
-      <Filter>03Game\Objects\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Objects\Stages\Coin.h">
-      <Filter>03Game\Objects\Stage\Coin</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Others\Circle.h">
-      <Filter>03Game\Others</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Others\Rect.h">
-      <Filter>03Game\Others</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -125,10 +125,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Game\Objects\Stages\Coin.cpp" />
-    <ClCompile Include="Game\Objects\Enemy.cpp" />
-    <ClCompile Include="Game\Objects\UI\CrossHair.cpp" />
-    <ClCompile Include="Game\Objects\EditorCamera.cpp" />
     <ClCompile Include="Engine\Collider\BoxCollider.cpp" />
     <ClCompile Include="Engine\Collider\Collider.cpp" />
     <ClCompile Include="Engine\Collider\SphereCollider.cpp" />
@@ -160,23 +156,9 @@
     <ClCompile Include="Engine\SceneManager.cpp" />
     <ClCompile Include="Engine\Json\JsonReader.cpp" />
     <ClCompile Include="Engine\Transition.cpp" />
-    <ClCompile Include="Game\Objects\UI\TitleImage.cpp" />
-    <ClCompile Include="Game\Others\Circle.cpp" />
-    <ClCompile Include="Game\Others\Rect.cpp" />
     <ClCompile Include="Game\Scenes\TestScene.cpp" />
-    <ClCompile Include="Game\Scenes\TitleScene.cpp" />
-    <ClCompile Include="Game\Objects\Player.cpp" />
-    <ClCompile Include="Game\Objects\TPSCamera.cpp" />
-    <ClCompile Include="Game\Objects\Stages\Stage.cpp" />
-    <ClCompile Include="Game\Objects\Stages\StageObject.cpp" />
-    <ClCompile Include="Game\Objects\SkySphere.cpp" />
-    <ClCompile Include="Game\Objects\UI\UIPanel.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game\Objects\Stages\Coin.h" />
-    <ClInclude Include="Game\Objects\Enemy.h" />
-    <ClInclude Include="Game\Objects\UI\CrossHair.h" />
-    <ClInclude Include="Game\Objects\EditorCamera.h" />
     <ClInclude Include="Engine\Collider\BoxCollider.h" />
     <ClInclude Include="Engine\Collider\Collider.h" />
     <ClInclude Include="Engine\Collider\SphereCollider.h" />
@@ -211,17 +193,7 @@
     <ClInclude Include="Engine\SceneManager.h" />
     <ClInclude Include="Engine\Json\JsonReader.h" />
     <ClInclude Include="Engine\Transition.h" />
-    <ClInclude Include="Game\Objects\UI\TitleImage.h" />
-    <ClInclude Include="Game\Others\Circle.h" />
-    <ClInclude Include="Game\Others\Rect.h" />
     <ClInclude Include="Game\Scenes\TestScene.h" />
-    <ClInclude Include="Game\Scenes\TitleScene.h" />
-    <ClInclude Include="Game\Objects\Player.h" />
-    <ClInclude Include="Game\Objects\TPSCamera.h" />
-    <ClInclude Include="Game\Objects\Stages\Stage.h" />
-    <ClInclude Include="Game\Objects\Stages\StageObject.h" />
-    <ClInclude Include="Game\Objects\SkySphere.h" />
-    <ClInclude Include="Game\Objects\UI\UIPanel.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shader\BillBoard.hlsl">
