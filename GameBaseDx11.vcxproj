@@ -118,6 +118,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -157,6 +158,9 @@
     <ClCompile Include="Engine\Json\JsonReader.cpp" />
     <ClCompile Include="Engine\Transition.cpp" />
     <ClCompile Include="Game\Scenes\TestScene.cpp" />
+    <ClCompile Include="Game\Objects\StageEditor.cpp" />
+    <ClCompile Include="Game\Objects\Stage.cpp" />
+    <ClCompile Include="Game\Objects\StageObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Collider\BoxCollider.h" />
@@ -194,6 +198,9 @@
     <ClInclude Include="Engine\Json\JsonReader.h" />
     <ClInclude Include="Engine\Transition.h" />
     <ClInclude Include="Game\Scenes\TestScene.h" />
+    <ClInclude Include="Game\Objects\StageEditor.h" />
+    <ClInclude Include="Game\Objects\Stage.h" />
+    <ClInclude Include="Game\Objects\StageObject.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shader\BillBoard.hlsl">

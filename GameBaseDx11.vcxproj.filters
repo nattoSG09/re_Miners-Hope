@@ -42,6 +42,9 @@
     <Filter Include="03Game\Objects">
       <UniqueIdentifier>{381a54ab-66a4-4970-939b-934eb381a063}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03Game\Objects\Stage">
+      <UniqueIdentifier>{795a9051-bba4-4cfc-b65f-731644128c29}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Main.cpp">
@@ -139,6 +142,15 @@
     </ClCompile>
     <ClCompile Include="Game\Scenes\TestScene.cpp">
       <Filter>03Game\Scenes\TestScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Objects\Stage.cpp">
+      <Filter>03Game\Objects\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Objects\StageEditor.cpp">
+      <Filter>03Game\Objects\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Objects\StageObject.cpp">
+      <Filter>03Game\Objects\Stage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -246,6 +258,15 @@
     </ClInclude>
     <ClInclude Include="Game\Scenes\TestScene.h">
       <Filter>03Game\Scenes\TestScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objects\Stage.h">
+      <Filter>03Game\Objects\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objects\StageEditor.h">
+      <Filter>03Game\Objects\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objects\StageObject.h">
+      <Filter>03Game\Objects\Stage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

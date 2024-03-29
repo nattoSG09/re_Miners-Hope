@@ -3,8 +3,9 @@
 
 class TestScene : public GameObject
 {
+	int pictHandle_;
 public:
-	TestScene(GameObject* parent);
+	TestScene(GameObject* _parent);
 	void Initialize() override;
 	void Update() override;
 	void Draw() override;
