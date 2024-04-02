@@ -7,6 +7,7 @@ class StageObject : public GameObject
 	std::string modelFilePath_;
 	int modelHandle_;
 	friend StageEditor;
+	friend Stage;
 public:
 	StageObject(std::string _name, std::string _modelFilePath,GameObject* _parent);
 	void Initialize() override;

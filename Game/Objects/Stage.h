@@ -17,6 +17,7 @@ public:
 
 	void AddObject(StageObject* _object) { objects_.push_back(_object); }
 
+	void Load(std::string fileName);
 	std::vector<StageObject*> GetStageObjects() { return objects_; }
 };
 

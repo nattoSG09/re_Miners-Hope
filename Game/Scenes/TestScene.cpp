@@ -15,9 +15,11 @@ void TestScene::Initialize()
 	// ステージを用意
 	Stage* pStage = Instantiate<Stage>(this);
 
+#ifdef _DEBUG
 	// ステージエディタを用意
 	StageEditor* pStageEditor = Instantiate<StageEditor>(this);
 	pStageEditor->SetTarget(pStage);
+#endif // _DEBUG
 
 	pictHandle_ = Image::Load("Images/title_gray01.png");
 	SetScale(0.7f);
